@@ -926,7 +926,8 @@ p { margin: 0; }
 /* ============================================================
    CONTACT
 ============================================================ */
-.contact { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; }
+/* Layout principal : map à gauche, infos+form à droite */
+.contact { display: grid; grid-template-columns: 1fr 1.4fr; gap: 0; }
 @media (max-width: 900px) { .contact { grid-template-columns: 1fr; } }
 .contact__map {
   background: var(--bg-secondary);
@@ -951,9 +952,10 @@ p { margin: 0; }
 }
 
 .contact__info {
-  padding: clamp(40px, 6vw, 80px) clamp(28px, 5vw, 70px);
-  display: flex; flex-direction: column; justify-content: center;
-  gap: 30px;
+  padding: clamp(32px, 5vw, 64px) clamp(24px, 4vw, 56px);
+  display: flex; flex-direction: column; justify-content: flex-start;
+  gap: 24px;
+  overflow-y: auto;
 }
 .contact__info .kicker { margin-bottom: 0; }
 .contact__row { display: flex; flex-direction: column; gap: 6px; }
@@ -961,6 +963,101 @@ p { margin: 0; }
 .contact__row a, .contact__row span { color: var(--ink-muted); font-size: 15px; }
 .contact__row a:hover { color: var(--accent); }
 .contact__row-mini { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+
+/* Formulaire de contact */
+.contact-form {
+  margin-top: 8px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.contact-form__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.6rem; font-weight: 500; line-height: 1.2;
+  color: var(--ink); margin-bottom: 4px;
+}
+.contact-form__row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+@media (max-width: 600px) {
+  .contact-form__row { grid-template-columns: 1fr; }
+}
+.field {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.field label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.field input,
+.field select,
+.field textarea {
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  background: var(--bg-primary);
+  color: var(--ink);
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: max(16px, 1rem); /* anti-zoom iOS */
+  min-height: 44px; /* touch target */
+  border-radius: 2px;
+  transition: border-color var(--t), box-shadow var(--t);
+  width: 100%;
+  box-sizing: border-box;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(139, 100, 66, 0.12);
+}
+.field input.is-error,
+.field select.is-error,
+.field textarea.is-error {
+  border-color: #C0392B;
+}
+.field__error {
+  font-size: 11px; color: #C0392B; letter-spacing: 0.06em;
+  display: none;
+  margin-top: -2px;
+}
+.field.has-error .field__error { display: block; }
+.field textarea {
+  resize: vertical; min-height: 90px; line-height: 1.55;
+}
+.field select { appearance: none; -webkit-appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%235C544B' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  padding-right: 40px;
+}
+/* Bouton submit du formulaire */
+.contact-form__submit {
+  background: var(--accent);
+  color: #fff;
+  padding: 15px 28px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+  border: none; border-radius: 2px;
+  cursor: pointer; align-self: flex-start;
+  min-height: 44px; min-width: 180px;
+  transition: background var(--t), transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.contact-form__submit:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -8px rgba(139, 100, 66, 0.45);
+}
+.contact-form__submit:active { transform: translateY(0); }
+/* Message de succès */
+.contact-form__success {
+  display: none;
+  padding: 16px 20px;
+  background: rgba(138, 150, 132, 0.15);
+  border: 1px solid var(--accent-2);
+  border-radius: 2px;
+  font-size: 14px; color: var(--ink);
+  line-height: 1.55;
+}
+.contact-form.is-sent .contact-form__success { display: block; }
+.contact-form.is-sent .contact-form__fields { display: none; }
+.contact-form__fields { display: contents; }
 
 .hours { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .hours__row {
@@ -1326,11 +1423,12 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
 <header class="header" id="header">
   <div class="container header__inner">
     <a href="#" class="logo" aria-label="Maison Ondé, accueil">
+      <!-- Logo monogramme M + onde — redesign pro -->
       <svg class="logo__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <ellipse cx="32" cy="32" rx="20" ry="29" stroke="currentColor" stroke-width="1.3"/>
-        <path d="M 14 32 Q 20 22 26 32 T 38 32 T 50 32" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="32" cy="5" r="1.4" fill="currentColor"/>
-        <circle cx="32" cy="59" r="1.4" fill="currentColor"/>
+        <!-- Lettre M sérif stylisée -->
+        <path d="M10 50 L10 18 L32 40 L54 18 L54 50" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <!-- Trait d'onde signature sous le M -->
+        <path d="M8 57 C 16 51, 22 63, 32 57 C 42 51, 48 63, 56 57" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
       </svg>
       <span class="logo__text">
         <span class="logo__top">Maison<em>Ondé</em></span>
@@ -1399,19 +1497,18 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
     <div class="hero__text">
       <div class="hero__mark">
         <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <ellipse cx="32" cy="32" rx="20" ry="29" stroke="currentColor" stroke-width="1.3"/>
-          <path d="M 14 32 Q 20 22 26 32 T 38 32 T 50 32" stroke="var(--accent-light)" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="32" cy="5" r="1.4" fill="currentColor"/>
-          <circle cx="32" cy="59" r="1.4" fill="currentColor"/>
+          <!-- Monogramme M héro (version claire) -->
+          <path d="M10 50 L10 18 L32 40 L54 18 L54 50" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M8 57 C 16 51, 22 63, 32 57 C 42 51, 48 63, 56 57" stroke="var(--accent-light)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
         </svg>
       </div>
       <span class="kicker hero__kicker" data-i18n="hero.kicker">Lyon · Coiffure mixte depuis 2014</span>
       <h1 class="h1 hero__title">
-        <span data-i18n="hero.title_part1">L'art capillaire,</span><br/>
-        <em data-i18n="hero.title_part2">pour elle et pour lui.</em>
+        <span data-i18n="hero.title_part1">Pour elle,</span><br/>
+        <em data-i18n="hero.title_part2">pour lui.</em>
       </h1>
       <p class="lead hero__sub" data-i18n="hero.subtitle">
-        Un salon, deux univers, une même exigence. Coupe, couleur, barbe, mariage — l'expertise Maison Ondé s'adresse à toute la famille.
+        Salon de coiffure mixte au cœur de Lyon.
       </p>
       <div class="hero__ctas">
         <a href="#cta-final" class="btn btn--primary" data-i18n="hero.cta_primary">Prendre rendez-vous</a>
@@ -1496,12 +1593,12 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
     <!-- Femme -->
     <div class="tab-panel is-active" id="tab-femme" role="tabpanel">
       <div class="service-grid">
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f1">Coupe & Brushing</div><div class="service__meta" data-i18n="svc.f1m">45 min · Diagnostic offert</div></div><div class="service__price">dès 45€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f2">Couleur & Reflets</div><div class="service__meta" data-i18n="svc.f2m">1h30 · Coloration végétale possible</div></div><div class="service__price">dès 75€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f3">Balayage / Mèches</div><div class="service__meta" data-i18n="svc.f3m">2h · Technique main levée</div></div><div class="service__price">dès 110€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f4">Lissage & Soin profond</div><div class="service__meta" data-i18n="svc.f4m">1h · Kératine ou botox</div></div><div class="service__price">dès 65€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f1">Coupe & Brushing</div><div class="service__meta" data-i18n="svc.f1m">45 min · Diagnostic offert</div></div><div class="service__price">dès 45 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f2">Couleur & Reflets</div><div class="service__meta" data-i18n="svc.f2m">1h30 · Coloration végétale possible</div></div><div class="service__price">dès 75 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f3">Balayage / Mèches</div><div class="service__meta" data-i18n="svc.f3m">2h · Technique main levée</div></div><div class="service__price">dès 110 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f4">Lissage & Soin profond</div><div class="service__meta" data-i18n="svc.f4m">1h · Kératine ou botox</div></div><div class="service__price">dès 65 EUR</div></article>
         <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f5">Coiffure mariage / événement</div><div class="service__meta" data-i18n="svc.f5m">Essai inclus</div></div><div class="service__price" data-i18n="svc.devis">sur devis</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f6">Chignon de soirée</div><div class="service__meta" data-i18n="svc.f6m">1h · Accessoires fournis</div></div><div class="service__price">dès 85€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f6">Chignon de soirée</div><div class="service__meta" data-i18n="svc.f6m">1h · Accessoires fournis</div></div><div class="service__price">dès 85 EUR</div></article>
       </div>
       <p class="service__note" data-i18n="services.note">Tarifs indicatifs, susceptibles d'évoluer selon longueur et épaisseur de cheveu.</p>
     </div>
@@ -1509,12 +1606,12 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
     <!-- Homme -->
     <div class="tab-panel" id="tab-homme" role="tabpanel">
       <div class="service-grid">
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h1">Coupe classique</div><div class="service__meta" data-i18n="svc.h1m">30 min · Shampoing inclus</div></div><div class="service__price">dès 28€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h2">Coupe + Barbe</div><div class="service__meta" data-i18n="svc.h2m">45 min · Serviette chaude</div></div><div class="service__price">dès 38€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h3">Taille de barbe au rasoir</div><div class="service__meta" data-i18n="svc.h3m">25 min · Coupe-chou traditionnel</div></div><div class="service__price">dès 22€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h4">Coloration grise</div><div class="service__meta" data-i18n="svc.h4m">45 min · Naturelle ou couvrante</div></div><div class="service__price">dès 35€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h5">Forfait Père & Fils</div><div class="service__meta" data-i18n="svc.h5m">Deux coupes simultanées</div></div><div class="service__price">dès 50€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h6">Coupe & Soin cuir chevelu</div><div class="service__meta" data-i18n="svc.h6m">50 min · Massage tonique</div></div><div class="service__price">dès 42€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h1">Coupe classique</div><div class="service__meta" data-i18n="svc.h1m">30 min · Shampoing inclus</div></div><div class="service__price">dès 28 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h2">Coupe + Barbe</div><div class="service__meta" data-i18n="svc.h2m">45 min · Serviette chaude</div></div><div class="service__price">dès 38 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h3">Taille de barbe au rasoir</div><div class="service__meta" data-i18n="svc.h3m">25 min · Coupe-chou traditionnel</div></div><div class="service__price">dès 22 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h4">Coloration grise</div><div class="service__meta" data-i18n="svc.h4m">45 min · Naturelle ou couvrante</div></div><div class="service__price">dès 35 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h5">Forfait Père & Fils</div><div class="service__meta" data-i18n="svc.h5m">Deux coupes simultanées</div></div><div class="service__price">dès 50 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h6">Coupe & Soin cuir chevelu</div><div class="service__meta" data-i18n="svc.h6m">50 min · Massage tonique</div></div><div class="service__price">dès 42 EUR</div></article>
       </div>
       <p class="service__note" data-i18n="services.note">Tarifs indicatifs, susceptibles d'évoluer selon longueur et épaisseur de cheveu.</p>
     </div>
@@ -1522,10 +1619,10 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
     <!-- Enfant -->
     <div class="tab-panel" id="tab-enfant" role="tabpanel">
       <div class="service-grid">
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e1">Coupe enfant (-10 ans)</div><div class="service__meta" data-i18n="svc.e1m">20 min</div></div><div class="service__price">dès 18€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e2">Coupe ado (10-15 ans)</div><div class="service__meta" data-i18n="svc.e2m">30 min</div></div><div class="service__price">dès 25€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e3">Première coupe</div><div class="service__meta" data-i18n="svc.e3m">Photo souvenir offerte</div></div><div class="service__price">25€</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e4">Coupe & coiffage fillette</div><div class="service__meta" data-i18n="svc.e4m">30 min · Tresse incluse</div></div><div class="service__price">dès 28€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e1">Coupe enfant (-10 ans)</div><div class="service__meta" data-i18n="svc.e1m">20 min</div></div><div class="service__price">dès 18 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e2">Coupe ado (10-15 ans)</div><div class="service__meta" data-i18n="svc.e2m">30 min</div></div><div class="service__price">dès 25 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e3">Première coupe</div><div class="service__meta" data-i18n="svc.e3m">Photo souvenir offerte</div></div><div class="service__price">25 EUR</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e4">Coupe & coiffage fillette</div><div class="service__meta" data-i18n="svc.e4m">30 min · Tresse incluse</div></div><div class="service__price">dès 28 EUR</div></article>
       </div>
       <p class="service__note" data-i18n="services.note">Tarifs indicatifs, susceptibles d'évoluer selon longueur et épaisseur de cheveu.</p>
     </div>
@@ -1534,9 +1631,9 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
     <div class="tab-panel" id="tab-soins" role="tabpanel">
       <div class="service-grid">
         <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.s1">Diagnostic capillaire</div><div class="service__meta" data-i18n="svc.s1m">15 min · En cabine</div></div><div class="service__price" data-i18n="svc.free">Offert</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.s2">Soin botox / kératine</div><div class="service__meta" data-i18n="svc.s2m">1h · Sur cheveux abîmés</div></div><div class="service__price">dès 80€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.s2">Soin botox / kératine</div><div class="service__meta" data-i18n="svc.s2m">1h · Sur cheveux abîmés</div></div><div class="service__price">dès 80 EUR</div></article>
         <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.s3">Pose d'extensions</div><div class="service__meta" data-i18n="svc.s3m">Tape-in ou keratine</div></div><div class="service__price" data-i18n="svc.devis">sur devis</div></article>
-        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.s4">Forfait mariée</div><div class="service__meta" data-i18n="svc.s4m">Essai + jour J</div></div><div class="service__price">dès 250€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.s4">Forfait mariée</div><div class="service__meta" data-i18n="svc.s4m">Essai + jour J</div></div><div class="service__price">dès 250 EUR</div></article>
       </div>
       <p class="service__note" data-i18n="services.note">Tarifs indicatifs, susceptibles d'évoluer selon longueur et épaisseur de cheveu.</p>
     </div>
@@ -1631,30 +1728,35 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
       <span class="kicker testi__kicker" data-i18n="testi.kicker">Ils en parlent</span>
       <div class="testi__viewport">
         <div class="testi__track" id="testiTrack">
+          <!-- Témoignage 1 -->
           <div class="testi__slide">
             <div class="testi__stars">★★★★★</div>
-            <p class="testi__quote">Le seul salon où mon mari et moi prenons rendez-vous ensemble — et où nous repartons aussi contents l'un que l'autre. Du grand art, sans la moindre prétention.</p>
-            <div class="testi__author"><strong>Sophie M.</strong> Avis Google · Janvier 2026</div>
+            <p class="testi__quote" data-i18n="testi.t1.quote">Le seul salon où mon mari et moi prenons rendez-vous ensemble — et où nous repartons aussi contents l'un que l'autre. Du grand art, sans la moindre prétention.</p>
+            <div class="testi__author"><strong>Sophie M.</strong> <span data-i18n="testi.t1.meta">Avis Google · Janvier 2026</span></div>
           </div>
+          <!-- Témoignage 2 -->
           <div class="testi__slide">
             <div class="testi__stars">★★★★★</div>
-            <p class="testi__quote">Romain a transformé ma barbe en quinze minutes. Précision chirurgicale, conseils sur mesure, ambiance soignée. Je n'irai plus ailleurs.</p>
-            <div class="testi__author"><strong>Karim B.</strong> Avis Google · Décembre 2025</div>
+            <p class="testi__quote" data-i18n="testi.t2.quote">Romain a transformé ma barbe en quinze minutes. Précision chirurgicale, conseils sur mesure, ambiance soignée. Je n'irai plus ailleurs.</p>
+            <div class="testi__author"><strong>Karim B.</strong> <span data-i18n="testi.t2.meta">Avis Google · Décembre 2025</span></div>
           </div>
+          <!-- Témoignage 3 -->
           <div class="testi__slide">
             <div class="testi__stars">★★★★★</div>
-            <p class="testi__quote">Un balayage parfaitement fondu, des conseils francs, et un accueil chaleureux. Maison Ondé a compris ce que veulent les femmes en 2026 : être entendues.</p>
-            <div class="testi__author"><strong>Léa T.</strong> Avis Google · Novembre 2025</div>
+            <p class="testi__quote" data-i18n="testi.t3.quote">Un balayage parfaitement fondu, des conseils francs, et un accueil chaleureux. Maison Ondé a compris ce que veulent les femmes en 2026 : être entendues.</p>
+            <div class="testi__author"><strong>Léa T.</strong> <span data-i18n="testi.t3.meta">Avis Google · Novembre 2025</span></div>
           </div>
+          <!-- Témoignage 4 -->
           <div class="testi__slide">
             <div class="testi__stars">★★★★★</div>
-            <p class="testi__quote">J'ai amené mon fils de 6 ans pour sa première vraie coupe. Patience, jeux, photo souvenir — il en redemande. Bravo à toute l'équipe.</p>
-            <div class="testi__author"><strong>Antoine R.</strong> Avis Google · Octobre 2025</div>
+            <p class="testi__quote" data-i18n="testi.t4.quote">J'ai amené mon fils de 6 ans pour sa première vraie coupe. Patience, jeux, photo souvenir — il en redemande. Bravo à toute l'équipe.</p>
+            <div class="testi__author"><strong>Antoine R.</strong> <span data-i18n="testi.t4.meta">Avis Google · Octobre 2025</span></div>
           </div>
+          <!-- Témoignage 5 -->
           <div class="testi__slide">
             <div class="testi__stars">★★★★★</div>
-            <p class="testi__quote">Mon chignon de mariée tenait encore le lendemain matin. Sofia est une magicienne, et elle a su me rassurer toute la journée. Mille mercis.</p>
-            <div class="testi__author"><strong>Inès D.</strong> Avis Google · Septembre 2025</div>
+            <p class="testi__quote" data-i18n="testi.t5.quote">Mon chignon de mariée tenait encore le lendemain matin. Sofia est une magicienne, et elle a su me rassurer toute la journée. Mille mercis.</p>
+            <div class="testi__author"><strong>Inès D.</strong> <span data-i18n="testi.t5.meta">Avis Google · Septembre 2025</span></div>
           </div>
         </div>
       </div>
@@ -1689,10 +1791,11 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
     <span class="kicker" data-i18n="contact.kicker">Localisation & contact</span>
     <h2 class="h2" data-i18n="contact.title">Au cœur de Lyon, <em class="underlined">à deux pas de Bellecour.</em></h2>
 
+    <!-- Infos compactes (adresse + tel + horaires) -->
     <div class="contact__row">
       <div class="contact__row-mini" data-i18n="contact.address_l">Adresse</div>
       <span>12 rue Auguste Comte, 69002 Lyon</span>
-      <a href="https://maps.google.com/?q=12+rue+Auguste+Comte+Lyon" target="_blank" rel="noopener" data-i18n="contact.itin">→ Itinéraire</a>
+      <a href="https://maps.google.com/?q=12+rue+Auguste+Comte+Lyon" target="_blank" rel="noopener noreferrer" data-i18n="contact.itin">→ Itinéraire</a>
     </div>
 
     <div class="contact__row">
@@ -1718,8 +1821,86 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
       <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a>
       <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h3V6h-3a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9z"/></svg></a>
       <a href="#" aria-label="Google"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></a>
-      <a href="#cta-final" class="btn btn--ghost" style="margin-left:8px" data-i18n="contact.book">Prendre RDV en ligne</a>
     </div>
+
+    <!-- ========================================================
+         FORMULAIRE DE CONTACT
+    ========================================================= -->
+    <form class="contact-form" id="contactForm" novalidate>
+      <p class="contact-form__title" data-i18n="form.title">Envoyez-nous un message</p>
+
+      <div class="contact-form__fields">
+        <!-- Ligne 1 : Nom + Email -->
+        <div class="contact-form__row">
+          <div class="field" id="field-name">
+            <label for="cf-name" data-i18n="form.name_l">Nom complet</label>
+            <input type="text" id="cf-name" name="name" required
+                   autocomplete="name"
+                   data-i18n-placeholder="form.name_ph"
+                   placeholder="Sophie Martin" />
+            <span class="field__error" data-i18n="form.name_err">Veuillez indiquer votre nom.</span>
+          </div>
+          <div class="field" id="field-email">
+            <label for="cf-email" data-i18n="form.email_l">Email</label>
+            <input type="email" id="cf-email" name="email" required
+                   autocomplete="email"
+                   data-i18n-placeholder="form.email_ph"
+                   placeholder="sophie@exemple.fr" />
+            <span class="field__error" data-i18n="form.email_err">Adresse email invalide.</span>
+          </div>
+        </div>
+
+        <!-- Ligne 2 : Téléphone + Prestation -->
+        <div class="contact-form__row">
+          <div class="field" id="field-phone">
+            <label for="cf-phone" data-i18n="form.phone_l">Téléphone</label>
+            <input type="tel" id="cf-phone" name="phone"
+                   autocomplete="tel"
+                   data-i18n-placeholder="form.phone_ph"
+                   placeholder="+33 6 00 00 00 00" />
+          </div>
+          <div class="field" id="field-service">
+            <label for="cf-service" data-i18n="form.service_l">Type de prestation</label>
+            <select id="cf-service" name="service" required>
+              <option value="" data-i18n="form.service_default">Choisir une prestation</option>
+              <option value="coupe-femme"  data-i18n="form.svc_f">Coupe femme</option>
+              <option value="coupe-homme"  data-i18n="form.svc_h">Coupe homme</option>
+              <option value="coupe-enfant" data-i18n="form.svc_e">Coupe enfant</option>
+              <option value="couleur"      data-i18n="form.svc_col">Couleur</option>
+              <option value="balayage"     data-i18n="form.svc_bal">Balayage</option>
+              <option value="barbe"        data-i18n="form.svc_bar">Barbe</option>
+              <option value="mariage"      data-i18n="form.svc_mar">Mariage</option>
+              <option value="autre"        data-i18n="form.svc_oth">Autre</option>
+            </select>
+            <span class="field__error" data-i18n="form.service_err">Veuillez choisir une prestation.</span>
+          </div>
+        </div>
+
+        <!-- Date souhaitée -->
+        <div class="field" id="field-date">
+          <label for="cf-date" data-i18n="form.date_l">Date souhaitée</label>
+          <input type="datetime-local" id="cf-date" name="date" />
+        </div>
+
+        <!-- Message -->
+        <div class="field" id="field-msg">
+          <label for="cf-msg" data-i18n="form.msg_l">Message</label>
+          <textarea id="cf-msg" name="message" rows="4"
+                    data-i18n-placeholder="form.msg_ph"
+                    placeholder="Décrivez votre demande, vos envies, vos questions…"></textarea>
+        </div>
+
+        <!-- Honeypot anti-spam (hidden) -->
+        <input type="text" name="_hp" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;" aria-hidden="true" />
+
+        <button type="submit" class="contact-form__submit" data-i18n="form.submit">Envoyer ma demande</button>
+      </div><!-- /.contact-form__fields -->
+
+      <!-- Message de succès -->
+      <div class="contact-form__success" role="alert">
+        <span data-i18n="form.success">Merci ! Votre message a bien été envoyé. Nous vous répondons sous 24h.</span>
+      </div>
+    </form>
   </div>
 </section>
 
@@ -1749,11 +1930,10 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
     <div class="footer__grid">
       <div>
         <div class="footer__logo">
+          <!-- Logo footer — même monogramme M + onde -->
           <svg class="footer__logo-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-            <ellipse cx="32" cy="32" rx="20" ry="29" stroke="currentColor" stroke-width="1.3"/>
-            <path d="M 14 32 Q 20 22 26 32 T 38 32 T 50 32" stroke="var(--accent-light)" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="32" cy="5" r="1.4" fill="currentColor"/>
-            <circle cx="32" cy="59" r="1.4" fill="currentColor"/>
+            <path d="M10 50 L10 18 L32 40 L54 18 L54 50" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M8 57 C 16 51, 22 63, 32 57 C 42 51, 48 63, 56 57" stroke="var(--accent-light)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
           </svg>
           <span class="footer__logo-text">
             <span class="footer__logo-top">Maison<em>Ondé</em></span>
@@ -1843,9 +2023,9 @@ const I18N = {
     nav: { salon: "Le Salon", services: "Services", team: "Équipe", gallery: "Réalisations", contact: "Contact", book: "Prendre RDV" },
     hero: {
       kicker: "Lyon · Coiffure mixte depuis 2014",
-      title_part1: "L'art capillaire,",
-      title_part2: "pour elle et pour lui.",
-      subtitle: "Un salon, deux univers, une même exigence. Coupe, couleur, barbe, mariage — l'expertise Maison Ondé s'adresse à toute la famille.",
+      title_part1: "Pour elle,",
+      title_part2: "pour lui.",
+      subtitle: "Salon de coiffure mixte au cœur de Lyon.",
       cta_primary: "Prendre rendez-vous",
       cta_secondary: "Découvrir le salon",
       scroll: "Découvrir"
@@ -1894,12 +2074,48 @@ const I18N = {
       f_all: "Tout", f_f: "Femme", f_h: "Homme", f_e: "Enfant"
     },
     team: { kicker: "L'équipe", title: "Six mains. <em>Un même geste.</em>" },
-    testi: { kicker: "Ils en parlent" },
+    testi: {
+      kicker: "Ils en parlent",
+      t1: {
+        quote: "Le seul salon où mon mari et moi prenons rendez-vous ensemble — et où nous repartons aussi contents l'un que l'autre. Du grand art, sans la moindre prétention.",
+        meta: "Avis Google · Janvier 2026"
+      },
+      t2: {
+        quote: "Romain a transformé ma barbe en quinze minutes. Précision chirurgicale, conseils sur mesure, ambiance soignée. Je n'irai plus ailleurs.",
+        meta: "Avis Google · Décembre 2025"
+      },
+      t3: {
+        quote: "Un balayage parfaitement fondu, des conseils francs, et un accueil chaleureux. Maison Ondé a compris ce que veulent les femmes en 2026 : être entendues.",
+        meta: "Avis Google · Novembre 2025"
+      },
+      t4: {
+        quote: "J'ai amené mon fils de 6 ans pour sa première vraie coupe. Patience, jeux, photo souvenir — il en redemande. Bravo à toute l'équipe.",
+        meta: "Avis Google · Octobre 2025"
+      },
+      t5: {
+        quote: "Mon chignon de mariée tenait encore le lendemain matin. Sofia est une magicienne, et elle a su me rassurer toute la journée. Mille mercis.",
+        meta: "Avis Google · Septembre 2025"
+      }
+    },
     contact: {
       kicker: "Localisation & contact",
       title: "Au cœur de Lyon, <em>à deux pas de Bellecour.</em>",
       address_l: "Adresse", contact_l: "Contact", hours_l: "Horaires",
       itin: "→ Itinéraire", closed: "Fermé", book: "Prendre RDV en ligne"
+    },
+    form: {
+      title: "Envoyez-nous un message",
+      name_l: "Nom complet", name_ph: "Sophie Martin", name_err: "Veuillez indiquer votre nom.",
+      email_l: "Email", email_ph: "sophie@exemple.fr", email_err: "Adresse email invalide.",
+      phone_l: "Téléphone", phone_ph: "+33 6 00 00 00 00",
+      service_l: "Type de prestation", service_default: "Choisir une prestation", service_err: "Veuillez choisir une prestation.",
+      svc_f: "Coupe femme", svc_h: "Coupe homme", svc_e: "Coupe enfant",
+      svc_col: "Couleur", svc_bal: "Balayage", svc_bar: "Barbe",
+      svc_mar: "Mariage", svc_oth: "Autre",
+      date_l: "Date souhaitée",
+      msg_l: "Message", msg_ph: "Décrivez votre demande, vos envies, vos questions…",
+      submit: "Envoyer ma demande",
+      success: "Merci ! Votre message a bien été envoyé. Nous vous répondons sous 24h."
     },
     days: { mon: "Lundi", tue: "Mardi", wed: "Mercredi", thu: "Jeudi", fri: "Vendredi", sat: "Samedi", sun: "Dimanche" },
     cta: {
@@ -1927,9 +2143,9 @@ const I18N = {
     nav: { salon: "The Salon", services: "Services", team: "Team", gallery: "Portfolio", contact: "Contact", book: "Book Now" },
     hero: {
       kicker: "Lyon · Unisex hair salon since 2014",
-      title_part1: "Hair artistry,",
-      title_part2: "for him and for her.",
-      subtitle: "One salon, two worlds, the same standard. Cuts, color, beard, bridal — Maison Ondé welcomes the whole family.",
+      title_part1: "For her,",
+      title_part2: "for him.",
+      subtitle: "Unisex hair salon in the heart of Lyon.",
       cta_primary: "Book an appointment",
       cta_secondary: "Discover the salon",
       scroll: "Scroll"
@@ -1978,12 +2194,48 @@ const I18N = {
       f_all: "All", f_f: "Women", f_h: "Men", f_e: "Kids"
     },
     team: { kicker: "The team", title: "Six hands. <em>One craft.</em>" },
-    testi: { kicker: "Word of mouth" },
+    testi: {
+      kicker: "Word of mouth",
+      t1: {
+        quote: "The only salon where my husband and I book together — and both leave equally happy. Real craftsmanship, zero pretension.",
+        meta: "Google review · January 2026"
+      },
+      t2: {
+        quote: "Romain reshaped my beard in fifteen minutes flat. Surgical precision, spot-on advice, and a calm, polished atmosphere. I won't go anywhere else.",
+        meta: "Google review · December 2025"
+      },
+      t3: {
+        quote: "A perfectly blended balayage, honest advice, and a genuinely warm welcome. Maison Ondé understands what women want in 2026: to be heard.",
+        meta: "Google review · November 2025"
+      },
+      t4: {
+        quote: "I brought my 6-year-old for his first proper haircut. The team was patient, playful — they even gave him a little souvenir photo. He's already asking to go back.",
+        meta: "Google review · October 2025"
+      },
+      t5: {
+        quote: "My bridal updo was still perfect the next morning. Sofia is a true artist, and she kept me calm and confident all day long. A thousand thank-yous.",
+        meta: "Google review · September 2025"
+      }
+    },
     contact: {
       kicker: "Visit & contact",
       title: "Right in central Lyon, <em>steps from Bellecour.</em>",
       address_l: "Address", contact_l: "Contact", hours_l: "Hours",
       itin: "→ Directions", closed: "Closed", book: "Book online"
+    },
+    form: {
+      title: "Send us a message",
+      name_l: "Full name", name_ph: "Sophie Martin", name_err: "Please enter your name.",
+      email_l: "Email", email_ph: "sophie@example.com", email_err: "Invalid email address.",
+      phone_l: "Phone", phone_ph: "+44 7700 000000",
+      service_l: "Service type", service_default: "Choose a service", service_err: "Please select a service.",
+      svc_f: "Women's cut", svc_h: "Men's cut", svc_e: "Children's cut",
+      svc_col: "Colour", svc_bal: "Balayage", svc_bar: "Beard",
+      svc_mar: "Bridal", svc_oth: "Other",
+      date_l: "Preferred date",
+      msg_l: "Message", msg_ph: "Tell us about your request, ideas or questions…",
+      submit: "Send my request",
+      success: "Thank you! Your message has been sent. We'll get back to you within 24 hours."
     },
     days: { mon: "Monday", tue: "Tuesday", wed: "Wednesday", thu: "Thursday", fri: "Friday", sat: "Saturday", sun: "Sunday" },
     cta: {
@@ -2017,11 +2269,22 @@ function getPath(obj, path) {
 function applyLang(lang) {
   document.documentElement.lang = lang;
   const dict = I18N[lang];
+  /* Textes principaux */
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const val = getPath(dict, el.getAttribute('data-i18n'));
     if (val == null) return;
     if (/<[a-z]/i.test(val)) el.innerHTML = val;
     else el.textContent = val;
+  });
+  /* Placeholders sur inputs/textarea/select */
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const val = getPath(dict, el.getAttribute('data-i18n-placeholder'));
+    if (val != null) el.placeholder = val;
+  });
+  /* Options de select avec data-i18n */
+  document.querySelectorAll('select option[data-i18n]').forEach(el => {
+    const val = getPath(dict, el.getAttribute('data-i18n'));
+    if (val != null) el.textContent = val;
   });
   document.querySelectorAll('.lang button').forEach(b => {
     b.classList.toggle('is-active', b.dataset.lang === lang);
@@ -2333,6 +2596,87 @@ document.getElementById('bookBtn').addEventListener('click', e => {
   };
   window.addEventListener('scroll', update, { passive: true });
   update();
+})();
+
+/* ============================================================
+   FORMULAIRE DE CONTACT — validation + envoi mailto
+============================================================ */
+(function contactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  /* Validation d'un champ individuel */
+  function validateField(field) {
+    const input = field.querySelector('input, select, textarea');
+    if (!input) return true;
+    const isRequired = input.required;
+    let ok = true;
+
+    if (isRequired && !input.value.trim()) {
+      ok = false;
+    }
+    if (input.type === 'email' && input.value.trim()) {
+      ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+    }
+    field.classList.toggle('has-error', !ok);
+    const errInput = input;
+    errInput.classList.toggle('is-error', !ok);
+    return ok;
+  }
+
+  /* Validation live à la sortie du champ */
+  form.querySelectorAll('.field').forEach(field => {
+    const input = field.querySelector('input, select, textarea');
+    if (input) {
+      input.addEventListener('blur', () => validateField(field));
+      input.addEventListener('input', () => {
+        if (field.classList.contains('has-error')) validateField(field);
+      });
+    }
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    /* Honeypot — abandon silencieux si rempli */
+    if (form.querySelector('[name="_hp"]').value) return;
+
+    /* Validation de tous les champs obligatoires */
+    let valid = true;
+    form.querySelectorAll('.field').forEach(field => {
+      if (!validateField(field)) valid = false;
+    });
+    if (!valid) {
+      /* Focus sur le premier champ en erreur */
+      const first = form.querySelector('.field.has-error input, .field.has-error select, .field.has-error textarea');
+      if (first) first.focus();
+      return;
+    }
+
+    /* Construction du mailto (fallback sans backend) */
+    const name    = form.querySelector('#cf-name').value.trim();
+    const email   = form.querySelector('#cf-email').value.trim();
+    const phone   = form.querySelector('#cf-phone').value.trim();
+    const service = form.querySelector('#cf-service').value;
+    const date    = form.querySelector('#cf-date').value;
+    const msg     = form.querySelector('#cf-msg').value.trim();
+
+    const subject = encodeURIComponent('Demande RDV — ' + service + ' — ' + name);
+    const body    = encodeURIComponent(
+      'Nom : ' + name + '\n' +
+      'Email : ' + email + '\n' +
+      (phone ? 'Tel : ' + phone + '\n' : '') +
+      'Prestation : ' + service + '\n' +
+      (date ? 'Date souhaitée : ' + date + '\n' : '') +
+      (msg ? '\nMessage :\n' + msg : '')
+    );
+
+    /* Ouverture du client mail */
+    window.location.href = 'mailto:bonjour@maison-onde.fr?subject=' + subject + '&body=' + body;
+
+    /* Affichage du message de succès */
+    form.classList.add('is-sent');
+  });
 })();
 
 /* ============================================================
