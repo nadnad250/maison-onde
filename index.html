@@ -63,9 +63,11 @@
   --ink:         #25211D;
   --ink-muted:   #5C544B;
   --ink-light:   #FAF8F5;
-  --accent:      #A07551;
-  --accent-hover:#7E5A3D;
+  --accent:      #8B6442;
+  --accent-hover:#6B4C30;
   --accent-light:#D9BD96;
+  --accent-2:    #8A9684;
+  --accent-cool: #C8B8A1;
   --line:        #E5DCC9;
   --line-dark:   #34302A;
   --white:       #FFFFFF;
@@ -75,6 +77,14 @@
   --t:           0.4s var(--ease);
   --container:   1320px;
   --gutter:      clamp(20px, 4vw, 56px);
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --space-7: 96px;
 }
 
 /* ============================================================
@@ -712,7 +722,6 @@ p { margin: 0; }
   transform: translateY(36px);
   transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
 }
-.cut-card.is-hidden { display: none; }
 .cut-card.is-in { opacity: 1; transform: translateY(0); }
 
 .cut-card__frame {
@@ -1140,10 +1149,175 @@ p { margin: 0; }
   *,*::before,*::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ============================================================
+   P1 — ACCENT COULEUR par section (sauge sur team/gallery)
+============================================================ */
+.team h2 em, .gallery h2 em { color: var(--accent-2); }
+.contact h2 em, .cta-final h2 em { color: var(--accent); }
+.salon h2 em, .services h2 em { color: var(--accent); }
+
+/* ============================================================
+   P2-A — NOISE GRAIN overlay global
+============================================================ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+}
+@media (prefers-reduced-motion: reduce) { body::before { opacity: 0.02; } }
+
+/* ============================================================
+   P2-B — HAND-DRAWN UNDERLINE sur em italiques clés
+============================================================ */
+.hero__title em,
+.h2 em.underlined {
+  position: relative;
+  display: inline-block;
+}
+.hero__title em::after,
+.h2 em.underlined::after {
+  content: '';
+  position: absolute;
+  left: -2%; right: -2%; bottom: -0.05em;
+  height: 0.28em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 18' preserveAspectRatio='none'%3E%3Cpath d='M2 12 C 60 2, 160 2, 218 10' stroke='%238B6442' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.6'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+  pointer-events: none;
+}
+.team h2 em.underlined::after,
+.gallery h2 em.underlined::after {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 18' preserveAspectRatio='none'%3E%3Cpath d='M2 12 C 60 2, 160 2, 218 10' stroke='%238A9684' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.6'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__title em::after, .h2 em.underlined::after { display: none; }
+}
+
+/* ============================================================
+   P2-C — SCROLL-DRIVEN PARALLAX sur galerie photos
+============================================================ */
+@supports (animation-timeline: view()) {
+  .cut-card__photo img {
+    animation: parallaxIn linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 60%;
+  }
+  @keyframes parallaxIn {
+    from { transform: scale(1.12) translateY(-3%); }
+    to   { transform: scale(1.04) translateY(0); }
+  }
+}
+
+/* ============================================================
+   P3 — TYPOGRAPHIE PRO : features + letter-spacing
+============================================================ */
+h1, h2, h3, h4 {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "onum" 1;
+  font-optical-sizing: auto;
+}
+.h1 { letter-spacing: -0.028em; }
+.h2 { letter-spacing: -0.022em; }
+.h1 em, .h2 em {
+  font-weight: 300;
+  opacity: 0.92;
+}
+
+/* ============================================================
+   P4-A — MAGNETIC HOVER sur boutons primaires
+============================================================ */
+.btn--primary {
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.3s var(--ease), color 0.3s var(--ease);
+}
+.btn--primary:hover {
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: 0 16px 36px -12px rgba(139, 100, 66, 0.45);
+}
+.btn--primary:active { transform: translateY(0) scale(0.99); }
+
+/* ============================================================
+   P4-B — FILTRES GALERIE smooth (opacity+scale au lieu de display:none)
+============================================================ */
+.cut-card {
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 0.4s var(--ease);
+  position: relative;
+}
+.cut-card.is-hidden {
+  opacity: 0;
+  transform: scale(0.94);
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
+/* ============================================================
+   P4-C — SCROLL PROGRESS BAR 2px caramel en haut
+============================================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 1001;
+  transition: width 0.1s linear;
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    width: 100%;
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: scrollProgress linear;
+    animation-timeline: scroll(root);
+    transition: none;
+  }
+  @keyframes scrollProgress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+}
+
+/* ============================================================
+   P4-D — BOUTON PAUSE VIDÉO (accessibilité héro)
+============================================================ */
+.hero__video-toggle {
+  position: absolute;
+  bottom: 20px; right: 20px;
+  z-index: 5;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: white;
+  opacity: 0.7;
+  border: 1px solid rgba(255,255,255,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  transition: opacity var(--t), background var(--t);
+  cursor: pointer;
+}
+.hero__video-toggle:hover { opacity: 1; background: rgba(0,0,0,0.65); }
+@media (max-width: 900px) { .hero__video-toggle { bottom: 16px; right: 16px; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero__video { display: none; }
+  .hero__video-toggle { display: none; }
+}
+
+/* ============================================================
+   P5 — TOKENS MOBILE : touch targets + anti-zoom iOS + safe-area
+============================================================ */
+.lang button { padding: 12px 10px; min-width: 44px; min-height: 44px; }
+input, textarea, select, .newsletter input { font-size: max(16px, 1rem); }
+body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
 </style>
 </head>
 <body>
 
+<div class="scroll-progress" aria-hidden="true"></div>
 <a href="#main" class="skip-link">Aller au contenu</a>
 
 <!-- ============================================================
@@ -1208,13 +1382,14 @@ p { margin: 0; }
      HERO (full-bleed video)
 ============================================================ -->
 <section class="hero" data-screen-label="01 Hero">
-  <video class="hero__video"
+  <video class="hero__video" id="heroVideo"
     src="assets/video/hero.mp4"
     poster="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1400&q=80&auto=format&fit=crop"
     autoplay muted loop playsinline preload="metadata"
     aria-hidden="true"></video>
   <div class="hero__veil" aria-hidden="true"></div>
   <div class="hero__grain" aria-hidden="true"></div>
+  <button class="hero__video-toggle" id="heroVideoToggle" aria-label="Mettre la vidéo en pause">&#9646;&#9646;</button>
 
   <div class="hero__badge" aria-label="Avis Google">
     <span>★★★★★</span><strong>4.9</strong>
@@ -1271,7 +1446,7 @@ p { margin: 0; }
       </div>
       <div class="salon__text reveal" data-delay="1">
         <span class="kicker" data-i18n="salon.kicker">Le Salon</span>
-        <h2 class="h2" data-i18n="salon.title">Un lieu pensé pour <em>toutes et tous</em>.</h2>
+        <h2 class="h2" data-i18n="salon.title">Un lieu pensé pour <em class="underlined">toutes et tous</em>.</h2>
         <p class="lead" data-i18n="salon.p1">
           Maison Ondé n'a ni rayon rose ni allée masculine. Un même atelier, où la précision d'une coupe homme côtoie la complexité d'un balayage, sans hiérarchie. Lumière douce, matériaux bruts, gestes appris en compétition.
         </p>
@@ -1307,7 +1482,7 @@ p { margin: 0; }
   <div class="container">
     <div class="services__head reveal">
       <span class="kicker" data-i18n="services.kicker">Services & Tarifs</span>
-      <h2 class="h2" data-i18n="services.title">Pour elle, pour lui, <em>pour les enfants.</em></h2>
+      <h2 class="h2" data-i18n="services.title">Pour elle, pour lui, <em class="underlined">pour les enfants.</em></h2>
       <p class="lead" data-i18n="services.lead">Tous les soins capillaires, sous un même toit. Tarifs indicatifs, ajustés selon longueur et épaisseur.</p>
     </div>
 
@@ -1375,7 +1550,7 @@ p { margin: 0; }
   <div class="container">
     <div class="gallery__head reveal">
       <span class="kicker" data-i18n="gallery.kicker">Réalisations</span>
-      <h2 class="h2" data-i18n="gallery.title">Nos coupes <em>signature</em>.</h2>
+      <h2 class="h2" data-i18n="gallery.title">Nos coupes <em class="underlined">signature</em>.</h2>
       <p class="lead" data-i18n="gallery.lead" style="margin: 18px auto 0;">Neuf coupes phares — femme, homme, enfant. Survolez pour le rendu couleur, cliquez pour agrandir.</p>
     </div>
 
@@ -1397,7 +1572,7 @@ p { margin: 0; }
   <div class="container">
     <div class="team__head reveal">
       <span class="kicker" data-i18n="team.kicker">L'équipe</span>
-      <h2 class="h2" data-i18n="team.title">Six mains. <em>Un même geste.</em></h2>
+      <h2 class="h2" data-i18n="team.title">Six mains. <em class="underlined">Un même geste.</em></h2>
     </div>
 
     <div class="team-grid">
@@ -1512,7 +1687,7 @@ p { margin: 0; }
 
   <div class="contact__info">
     <span class="kicker" data-i18n="contact.kicker">Localisation & contact</span>
-    <h2 class="h2" data-i18n="contact.title">Au cœur de Lyon, <em>à deux pas de Bellecour.</em></h2>
+    <h2 class="h2" data-i18n="contact.title">Au cœur de Lyon, <em class="underlined">à deux pas de Bellecour.</em></h2>
 
     <div class="contact__row">
       <div class="contact__row-mini" data-i18n="contact.address_l">Adresse</div>
@@ -1556,7 +1731,7 @@ p { margin: 0; }
   <div class="cta-final__veil" aria-hidden="true"></div>
   <div class="cta-final__inner reveal">
     <span class="kicker" data-i18n="cta.kicker">Réservez votre moment</span>
-    <h2 class="h2" data-i18n="cta.title">Prêt·e à transformer <em>votre style</em> ?</h2>
+    <h2 class="h2" data-i18n="cta.title">Prêt·e à transformer <em class="underlined">votre style</em> ?</h2>
     <p class="lead" data-i18n="cta.sub" style="color:rgba(255,255,255,0.75); margin-left:auto; margin-right:auto;">
       Femmes, hommes, enfants — votre prochain rendez-vous est à un clic.
     </p>
@@ -1962,14 +2137,10 @@ GALLERY.forEach((g, i) => {
   cardIO.observe(fig);
 });
 
-// Filters
+// Filters — active state only (smooth transition gérée par patchGalleryFilter plus bas)
 document.querySelectorAll('.filter').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter').forEach(b => b.classList.toggle('is-active', b === btn));
-    const f = btn.dataset.filter;
-    document.querySelectorAll('.cut-card').forEach(t => {
-      t.classList.toggle('is-hidden', f !== 'all' && t.dataset.cat !== f);
-    });
   });
 });
 
@@ -2123,6 +2294,73 @@ document.getElementById('bookBtn').addEventListener('click', e => {
   document.getElementById('ckAccept').addEventListener('click', () => dismiss('all'));
   document.getElementById('ckRefuse').addEventListener('click', () => dismiss('none'));
   document.getElementById('ckCustom').addEventListener('click', () => dismiss('essential'));
+})();
+
+/* ============================================================
+   P4-D — Bouton pause/lecture vidéo hero
+============================================================ */
+(function heroVideoPause() {
+  const video = document.getElementById('heroVideo');
+  const btn = document.getElementById('heroVideoToggle');
+  if (!video || !btn) return;
+  btn.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+      btn.setAttribute('aria-label', 'Mettre la vidéo en pause');
+      btn.innerHTML = '&#9646;&#9646;';
+    } else {
+      video.pause();
+      btn.setAttribute('aria-label', 'Lancer la vidéo');
+      btn.innerHTML = '&#9654;';
+    }
+  });
+})();
+
+/* ============================================================
+   P4-C — Scroll progress bar fallback JS
+============================================================ */
+(function scrollProgress() {
+  const bar = document.querySelector('.scroll-progress');
+  if (!bar) return;
+  /* si @supports animation-timeline: scroll() est actif, le CSS gère tout */
+  const cssSupport = CSS && CSS.supports && CSS.supports('animation-timeline', 'scroll()');
+  if (cssSupport) return;
+  const update = () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ============================================================
+   P4-B — Filtres galerie smooth (transition delay avant is-hidden)
+============================================================ */
+(function patchGalleryFilter() {
+  document.querySelectorAll('.filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.cut-card').forEach(card => {
+        const hide = f !== 'all' && card.dataset.cat !== f;
+        if (hide) {
+          /* laisser la transition se jouer avant de passer visibility:hidden */
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.94)';
+          card.style.pointerEvents = 'none';
+          setTimeout(() => {
+            card.classList.add('is-hidden');
+            card.style.opacity = '';
+            card.style.transform = '';
+            card.style.pointerEvents = '';
+          }, 450);
+        } else {
+          card.classList.remove('is-hidden');
+        }
+      });
+    });
+  });
 })();
 </script>
 
