@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Maison Ondé · Salon de coiffure mixte à Lyon. Coupe, couleur, balayage, barbe, mariage — pour elle, pour lui, pour toute la famille. Prise de rendez-vous en ligne." />
+<meta name="theme-color" content="#FAF8F5" />
+
+<title>Maison Ondé · Salon de coiffure mixte · Lyon</title>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Maison Ondé · Coiffure mixte à Lyon" />
+<meta property="og:description" content="L'art capillaire, pour elle et pour lui. Un salon, deux univers, une même exigence." />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Maison Ondé · Coiffure mixte à Lyon" />
+<meta name="twitter:description" content="L'art capillaire, pour elle et pour lui." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- JSON-LD HairSalon -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Maison Ondé",
+  "image": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=1200&q=80",
+  "@id": "https://maison-onde.fr",
+  "url": "https://maison-onde.fr",
+  "telephone": "+33478421653",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "12 rue Auguste Comte",
+    "addressLocality": "Lyon",
+    "postalCode": "69002",
+    "addressCountry": "FR"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 45.7559, "longitude": 4.8316 },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "09:30", "closes": "19:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "18:00" }
+  ],
+  "sameAs": ["https://www.instagram.com/maisononde","https://www.facebook.com/maisononde"]
+}
+</script>
+
+<style>
+/* ============================================================
+   TOKENS
+============================================================ */
+:root {
+  --bg-primary:  #FAF8F5;
+  --bg-secondary:#EDE5D6;
+  --bg-dark:     #1F1B17;
+  --ink:         #25211D;
+  --ink-muted:   #5C544B;
+  --ink-light:   #FAF8F5;
+  --accent:      #A07551;
+  --accent-hover:#7E5A3D;
+  --accent-light:#D9BD96;
+  --line:        #E5DCC9;
+  --line-dark:   #34302A;
+  --white:       #FFFFFF;
+  --shadow-soft: 0 4px 24px rgba(26,26,26,0.06);
+  --shadow-strong:0 12px 40px rgba(26,26,26,0.14);
+  --ease:        cubic-bezier(0.22, 1, 0.36, 1);
+  --t:           0.4s var(--ease);
+  --container:   1320px;
+  --gutter:      clamp(20px, 4vw, 56px);
+}
+
+/* ============================================================
+   RESET
+============================================================ */
+*,*::before,*::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--ink);
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img,svg,video { max-width: 100%; display: block; }
+img { filter: contrast(1.02) saturate(0.95); }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; background: none; border: 0; color: inherit; }
+input,textarea { font: inherit; }
+ul,ol { list-style: none; padding: 0; margin: 0; }
+h1,h2,h3,h4 { margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; letter-spacing: -0.005em; }
+p { margin: 0; }
+
+/* ============================================================
+   TYPOGRAPHY
+============================================================ */
+.kicker {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-block;
+}
+.h1 { font-size: clamp(2.5rem, 6vw, 5.25rem); line-height: 1.04; font-weight: 500; }
+.h1 em { font-style: italic; font-weight: 400; color: var(--ink-muted); }
+.h2 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.1; }
+.h3 { font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.2; }
+.lead { font-size: clamp(1rem, 1.2vw, 1.15rem); color: var(--ink-muted); line-height: 1.75; max-width: 56ch; }
+
+/* ============================================================
+   UTILITIES
+============================================================ */
+.container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: clamp(70px, 11vw, 140px) 0; }
+.section--dark { background: var(--bg-dark); color: var(--ink-light); }
+.section--sand { background: var(--bg-secondary); }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 6vw, 96px); align-items: center; }
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: var(--t);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.btn--primary { background: var(--ink); color: var(--ink-light); }
+.btn--primary:hover { background: var(--accent); transform: translateY(-1px); }
+.btn--invert { background: var(--bg-primary); color: var(--ink); }
+.btn--invert:hover { background: var(--accent); color: var(--ink-light); }
+.btn--ghost {
+  padding: 6px 0;
+  background: transparent;
+  color: inherit;
+  position: relative;
+  letter-spacing: 0.12em;
+}
+.btn--ghost::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 1px; background: currentColor;
+  transform-origin: right; transform: scaleX(1); transition: transform 0.5s var(--ease);
+}
+.btn--ghost:hover::after { transform-origin: left; transform: scaleX(0); }
+
+/* Skip link */
+.skip-link {
+  position: absolute; top: -100px; left: 0;
+  background: var(--ink); color: var(--ink-light);
+  padding: 12px 20px; z-index: 999;
+}
+.skip-link:focus { top: 0; }
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+.header {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 80;
+  padding: 18px 0;
+  transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
+}
+/* Header at top of hero (transparent over dark video) — light text */
+.header:not(.is-scrolled) .header__inner { text-shadow: 0 1px 8px rgba(0,0,0,0.45); }
+.header:not(.is-scrolled) .logo,
+.header:not(.is-scrolled) .logo__mark,
+.header:not(.is-scrolled) .nav__link,
+.header:not(.is-scrolled) .lang button {
+  color: #FFFFFF;
+}
+.header:not(.is-scrolled) .logo__top em { color: #FFFFFF; }
+.header:not(.is-scrolled) .nav__link::after { background: var(--accent-light); }
+.header:not(.is-scrolled) .lang button.is-active { color: var(--accent-light); }
+.header:not(.is-scrolled) .header__cta {
+  background: rgba(255,255,255,0.96);
+  color: var(--ink);
+}
+.header:not(.is-scrolled) .header__cta:hover { background: var(--accent); color: #FFFFFF; }
+.header:not(.is-scrolled) .burger span { background: #FFFFFF; }
+.header.is-scrolled {
+  background: rgba(250, 248, 245, 0.86);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-soft);
+  padding: 10px 0;
+}
+.header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px;
+}
+/* Logo */
+.logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--ink);
+  transition: var(--t);
+  line-height: 1;
+}
+.logo:hover { color: var(--ink); }
+.logo__mark {
+  width: 32px; height: 32px;
+  flex: 0 0 32px;
+  color: var(--ink);
+  transition: transform 0.7s var(--ease);
+}
+.logo:hover .logo__mark { transform: rotate(-5deg); }
+.logo__text {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  line-height: 1;
+}
+.logo__top {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500; font-size: 22px;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+}
+.logo__top em {
+  font-style: italic; color: var(--accent); font-weight: 500;
+  margin-left: 4px;
+}
+.logo__sub { display: none; }
+.header.is-scrolled .logo__top { font-size: 19px; }
+.header.is-scrolled .logo__mark { width: 28px; height: 28px; flex-basis: 28px; }
+@media (max-width: 600px) {
+  .logo__top { font-size: 17px; }
+  .logo__mark { width: 28px; height: 28px; flex-basis: 28px; }
+}
+.nav { display: flex; align-items: center; gap: 26px; }
+.nav__link {
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  position: relative; padding: 6px 0;
+  white-space: nowrap;
+  transition: color var(--t);
+}
+.nav__link::after {
+  content: ""; position: absolute; left: 50%; bottom: 0;
+  width: 0; height: 1px; background: var(--accent);
+  transition: width 0.4s var(--ease), left 0.4s var(--ease);
+}
+.nav__link:hover { color: var(--accent); }
+.nav__link:hover::after { width: 100%; left: 0; }
+.header__right { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+.lang {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+}
+.lang button {
+  padding: 4px 6px; opacity: 0.45; transition: opacity var(--t);
+}
+.lang button.is-active { opacity: 1; color: var(--accent); }
+.lang button:hover { opacity: 1; }
+.lang__sep { opacity: 0.3; }
+
+/* Burger */
+.burger {
+  display: none;
+  width: 32px; height: 32px;
+  position: relative;
+}
+.burger span {
+  position: absolute; left: 4px; right: 4px; height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.4s var(--ease), opacity 0.3s;
+}
+.burger span:nth-child(1) { top: 11px; }
+.burger span:nth-child(2) { top: 19px; }
+.burger.is-open span:nth-child(1) { top: 15px; transform: rotate(45deg); }
+.burger.is-open span:nth-child(2) { top: 15px; transform: rotate(-45deg); }
+
+@media (max-width: 1100px) {
+  .nav { gap: 20px; }
+  .nav__link { font-size: 11px; letter-spacing: 0.1em; }
+  .header__cta { padding: 12px 20px; font-size: 11px; }
+}
+@media (max-width: 960px) {
+  .nav, .header__cta { display: none; }
+  .burger { display: block; }
+}
+
+/* Mobile overlay */
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 70;
+  background: var(--bg-primary);
+  transform: translateX(100%);
+  transition: transform 0.5s var(--ease);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px var(--gutter);
+}
+.mobile-menu.is-open { transform: translateX(0); }
+.mobile-menu .nav__link { font-size: 24px; padding: 14px 0; font-family: 'Cormorant Garamond', Georgia, serif; text-transform: none; letter-spacing: 0; font-weight: 400; }
+.mobile-menu__nav { display: flex; flex-direction: column; gap: 4px; }
+.mobile-menu__footer { margin-top: 50px; display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+
+/* ============================================================
+   HERO (full-bleed video)
+============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--bg-dark);
+  color: var(--ink-light);
+  isolation: isolate;
+}
+.hero__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  filter: contrast(1.04) saturate(0.92) brightness(0.98);
+}
+.hero__veil {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  background:
+    /* strong bottom darkness for text legibility */
+    linear-gradient(180deg,
+      rgba(15,12,10,0.60) 0%,
+      rgba(15,12,10,0.18) 15%,
+      rgba(15,12,10,0.10) 38%,
+      rgba(15,12,10,0.55) 65%,
+      rgba(15,12,10,0.90) 100%),
+    /* left-side darkening for text panel */
+    linear-gradient(90deg, rgba(15,12,10,0.55) 0%, rgba(15,12,10,0.15) 45%, rgba(15,12,10,0) 70%),
+    /* warm cinema color wash */
+    radial-gradient(140% 90% at 78% 78%, rgba(160,117,81,0.18) 0%, rgba(160,117,81,0) 60%);
+}
+.hero__grain {
+  position: absolute; inset: 0; z-index: 2;
+  pointer-events: none; opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.4'/></svg>");
+}
+.hero__inner {
+  position: relative; z-index: 3;
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 130px clamp(28px, 6vw, 88px) clamp(80px, 12vh, 140px);
+  max-width: 1600px; margin: 0 auto;
+}
+.hero__text {
+  max-width: 820px;
+  display: flex; flex-direction: column;
+  color: var(--ink-light);
+}
+.hero__kicker {
+  color: #FFFFFF;
+  margin-bottom: 28px;
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 16px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.6);
+}
+.hero__kicker::before {
+  content: ""; width: 36px; height: 1px; background: #FFFFFF; display: inline-block;
+}
+.hero__title {
+  color: var(--ink-light);
+  margin-bottom: 32px;
+  text-wrap: balance;
+  font-weight: 500;
+  font-size: clamp(2.8rem, 6.8vw, 6.2rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.45);
+}
+.hero__title em {
+  color: #FFFFFF;
+  font-style: italic;
+  font-weight: 400;
+  display: inline-block;
+}
+.hero__sub {
+  color: #FFFFFF;
+  margin-bottom: 48px;
+  max-width: 54ch;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+  font-size: clamp(1.05rem, 1.25vw, 1.18rem);
+  line-height: 1.7;
+}
+.hero__ctas { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.hero__mark {
+  width: 68px; height: 68px;
+  margin-bottom: 34px;
+  color: var(--ink-light);
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 16px rgba(0,0,0,0.4));
+  transform-origin: top left;
+  animation: markIn 1.4s var(--ease) both 0.2s;
+}
+.hero__mark svg { width: 100%; height: 100%; display: block; }
+@keyframes markIn {
+  from { opacity: 0; transform: translateY(-12px) scale(0.92) rotate(-8deg); }
+  to   { opacity: 0.95; transform: translateY(0) scale(1) rotate(0); }
+}
+.hero__ctas .btn--primary {
+  background: var(--ink-light);
+  color: var(--ink);
+  box-shadow: 0 8px 28px -10px rgba(0,0,0,0.5);
+}
+.hero__ctas .btn--primary:hover {
+  background: var(--accent);
+  color: var(--ink-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -10px rgba(160,117,81,0.6);
+}
+.hero__ctas .btn--ghost { color: var(--ink-light); }
+.hero__badge {
+  position: absolute; top: 110px; right: 32px;
+  z-index: 4;
+  background: rgba(250, 248, 245, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 14px 18px;
+  border-radius: 2px;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: var(--shadow-soft);
+  color: var(--ink);
+}
+.hero__badge strong { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 15px; letter-spacing: 0; text-transform: none; color: var(--accent); }
+.hero__scroll {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  z-index: 4;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.hero__scroll::after {
+  content: ""; width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--accent-light), transparent);
+  animation: scrollLine 2.2s infinite var(--ease);
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+@media (max-width: 900px) {
+  .hero__inner { padding: 110px 22px 80px; }
+  .hero__badge { top: 96px; right: 22px; padding: 10px 14px; }
+  .hero__badge strong { font-size: 14px; }
+  .hero__mark { width: 52px; height: 52px; margin-bottom: 24px; }
+  .hero__scroll { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__mark { animation: none; }
+}
+
+/* ============================================================
+   MARQUEE
+============================================================ */
+.marquee {
+  background: var(--bg-dark);
+  color: var(--ink-light);
+  padding: 26px 0;
+  overflow: hidden;
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+.marquee__track {
+  display: flex; gap: 60px;
+  width: max-content;
+  animation: scroll 42s linear infinite;
+}
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__item {
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 60px;
+  white-space: nowrap;
+}
+.marquee__item::before {
+  content: "✦"; color: var(--accent-light); font-size: 14px;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   SALON (about)
+============================================================ */
+.salon__visual {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  position: relative;
+}
+.salon__visual img { width: 100%; height: 100%; object-fit: cover; }
+.salon__visual::after {
+  content: ""; position: absolute; bottom: -1px; right: -1px;
+  width: 40%; height: 30%; background: var(--bg-primary);
+}
+.salon__visual-label {
+  position: absolute; bottom: 18px; right: 22px; z-index: 2;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink); font-weight: 500;
+}
+.salon__text > * + * { margin-top: 22px; }
+.salon__text h2 { margin-bottom: 6px; }
+.salon__text .kicker { margin-bottom: 18px; }
+.salon__sig {
+  margin-top: 36px;
+  display: flex; align-items: center; gap: 22px;
+}
+.salon__sig svg { color: var(--accent); }
+.salon__sig-info { font-size: 14px; }
+.salon__sig-info b { display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 18px; }
+.salon__sig-info span { color: var(--ink-muted); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+.stats {
+  margin-top: clamp(60px, 10vw, 110px);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.stat {
+  padding: 36px 24px;
+  text-align: center;
+  border-right: 1px solid var(--line);
+}
+.stat:last-child { border-right: 0; }
+.stat__num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400; color: var(--accent); }
+.stat__label { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); margin-top: 6px; }
+@media (max-width: 700px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat { border-right: 0; border-bottom: 1px solid var(--line); }
+  .stat:nth-child(odd) { border-right: 1px solid var(--line); }
+  .stat:nth-last-child(-n+2) { border-bottom: 0; }
+}
+
+/* ============================================================
+   SERVICES
+============================================================ */
+.services__head { text-align: center; margin-bottom: 60px; }
+.services__head .kicker { margin-bottom: 16px; }
+.services__head .lead { margin: 18px auto 0; }
+
+.tabs {
+  display: flex; justify-content: center; gap: 8px;
+  margin-bottom: 60px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0;
+}
+.tab {
+  position: relative;
+  padding: 16px 26px;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-muted);
+  transition: color var(--t);
+}
+.tab::after {
+  content: ""; position: absolute; bottom: -1px; left: 50%;
+  width: 0; height: 2px; background: var(--accent);
+  transition: all 0.4s var(--ease);
+}
+.tab.is-active { color: var(--ink); }
+.tab.is-active::after { width: 60%; left: 20%; }
+.tab:hover { color: var(--ink); }
+
+.tab-panel { display: none; animation: fadeIn 0.5s var(--ease); counter-reset: svc; }
+.tab-panel.is-active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.service-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0 clamp(40px, 6vw, 90px);
+  max-width: 1100px; margin: 0 auto;
+  counter-reset: svc;
+}
+@media (max-width: 800px) {
+  .service-grid { grid-template-columns: 1fr; }
+}
+.service {
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: baseline; gap: 22px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+  counter-increment: svc;
+  position: relative;
+  cursor: default;
+  transition: padding 0.5s var(--ease);
+}
+.service::before {
+  content: counter(svc, decimal-leading-zero);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  align-self: start;
+  padding-top: 7px;
+  letter-spacing: 0.04em;
+  min-width: 22px;
+}
+.service__center {
+  display: flex; flex-direction: column;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.service__center::after {
+  /* dotted leader line between name and price */
+  content: "";
+  position: absolute;
+  bottom: 13px; left: 0; right: 0;
+  border-bottom: 1px dotted var(--line);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  z-index: -1;
+}
+.service:hover { padding-left: 14px; }
+.service:hover .service__center::after { opacity: 0.7; }
+.service:hover .service__price { color: var(--ink); }
+.service__name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+.service__meta { font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); margin-top: 0; }
+.service__price {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+  align-self: start;
+  padding-top: 4px;
+  transition: color 0.4s var(--ease), transform 0.4s var(--ease);
+  font-feature-settings: "lnum";
+}
+.service:hover .service__price { transform: translateX(-4px); }
+.service__note {
+  margin: 40px auto 0; max-width: 600px;
+  text-align: center;
+  font-size: 12px; color: var(--ink-muted);
+  letter-spacing: 0.04em;
+  font-style: italic;
+}
+
+/* ============================================================
+   GALLERY
+============================================================ */
+.gallery__head { text-align: center; margin-bottom: 40px; }
+.gallery__filters {
+  display: flex; justify-content: center; gap: 6px;
+  margin-bottom: 50px; flex-wrap: wrap;
+}
+.filter {
+  padding: 8px 18px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-muted);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition: var(--t);
+}
+.filter:hover { color: var(--ink); }
+.filter.is-active { background: var(--ink); color: var(--ink-light); border-color: var(--ink); }
+
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(36px, 4vw, 60px) clamp(18px, 2vw, 32px);
+  perspective: 1400px;
+}
+@media (max-width: 900px) { .masonry { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .masonry { grid-template-columns: 1fr; } }
+
+.cut-card {
+  margin: 0;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.cut-card.is-hidden { display: none; }
+.cut-card.is-in { opacity: 1; transform: translateY(0); }
+
+.cut-card__frame {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: #ECE6DA;
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease);
+  will-change: transform;
+}
+.cut-card:hover .cut-card__frame {
+  box-shadow: 0 26px 60px -22px rgba(37,33,29,0.4);
+}
+.cut-card__photo {
+  position: absolute; inset: 0;
+  overflow: hidden;
+}
+.cut-card__photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  filter: grayscale(0.85) contrast(1.03) brightness(0.98);
+  transform: scale(1.05);
+  transition: filter 0.8s var(--ease), transform 1s var(--ease), clip-path 1.4s var(--ease);
+  clip-path: inset(100% 0 0 0);
+  will-change: transform, filter, clip-path;
+}
+.cut-card.is-in .cut-card__photo img { clip-path: inset(0 0 0 0); }
+.cut-card:hover .cut-card__photo img {
+  filter: grayscale(0) contrast(1.05) saturate(0.95) brightness(1.02);
+  transform: scale(1.12);
+}
+.cut-card__frame::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(31,27,23,0) 55%, rgba(31,27,23,0.5) 100%);
+  opacity: 0; transition: opacity 0.6s var(--ease);
+  pointer-events: none;
+}
+.cut-card:hover .cut-card__frame::before { opacity: 1; }
+.cut-card__view {
+  position: absolute; left: 18px; bottom: 18px; z-index: 2;
+  color: var(--ink-light);
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.5s var(--ease) 0.05s, transform 0.5s var(--ease) 0.05s;
+  pointer-events: none;
+}
+.cut-card:hover .cut-card__view { opacity: 1; transform: translateY(0); }
+
+.cut-card__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 18px;
+  padding: 18px 4px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 14px;
+  position: relative;
+}
+.cut-card__num {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  padding-top: 3px;
+}
+.cut-card__label {
+  display: flex; flex-direction: column;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.75;
+  position: relative;
+}
+.cut-card__label::after {
+  content: ""; position: absolute; left: 0; bottom: -10px;
+  width: 0; height: 1px; background: var(--accent);
+  transition: width 0.5s var(--ease);
+}
+.cut-card:hover .cut-card__label::after { width: 42px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cut-card, .cut-card__photo img { transition-duration: 0.01s !important; transform: none !important; clip-path: none !important; }
+  .cut-card { opacity: 1 !important; }
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(15, 15, 15, 0.93);
+  display: none; align-items: center; justify-content: center;
+  padding: 60px;
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.lightbox.is-open { display: flex; opacity: 1; }
+.lightbox__img {
+  max-width: min(90vw, 1100px); max-height: 82vh;
+  object-fit: contain;
+  box-shadow: var(--shadow-strong);
+}
+.lightbox__close, .lightbox__prev, .lightbox__next {
+  position: absolute;
+  color: var(--ink-light);
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: var(--t);
+  background: rgba(0,0,0,0.2);
+}
+.lightbox__close { top: 24px; right: 24px; }
+.lightbox__prev  { left: 24px; top: 50%; transform: translateY(-50%); }
+.lightbox__next  { right: 24px; top: 50%; transform: translateY(-50%); }
+.lightbox__close:hover, .lightbox__prev:hover, .lightbox__next:hover {
+  background: var(--accent); border-color: var(--accent);
+}
+.lightbox__caption {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  color: var(--ink-light); font-size: 12px; letter-spacing: 0.18em;
+  text-transform: uppercase; opacity: 0.7;
+}
+
+/* ============================================================
+   TEAM
+============================================================ */
+.team__head { text-align: center; margin-bottom: 60px; }
+.team-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 36px 26px;
+}
+@media (max-width: 900px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; } }
+.member__photo {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  margin-bottom: 18px;
+}
+.member__photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(1) contrast(1.04);
+  transition: filter 0.6s var(--ease), transform 1s var(--ease);
+}
+.member:hover .member__photo img { filter: grayscale(0) contrast(1.02) saturate(0.95); transform: scale(1.03); }
+.member__role { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.member__name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.4rem; font-weight: 500; margin-bottom: 6px; }
+.member__info { color: var(--ink-muted); font-size: 13px; }
+.member__ig { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 12px; color: var(--ink-muted); }
+.member__ig:hover { color: var(--accent); }
+
+/* ============================================================
+   TESTIMONIALS
+============================================================ */
+.testi { text-align: center; }
+.testi__kicker { margin-bottom: 24px; }
+.testi__viewport { position: relative; overflow: hidden; padding: 0 60px; }
+.testi__track { display: flex; transition: transform 0.6s var(--ease); }
+.testi__slide {
+  flex: 0 0 100%;
+  padding: 0 20px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 28px;
+}
+.testi__stars { color: var(--accent); letter-spacing: 4px; font-size: 16px; }
+.testi__quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic; font-weight: 400;
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  line-height: 1.4; max-width: 800px;
+  text-wrap: pretty;
+}
+.testi__quote::before { content: "“"; font-size: 1.4em; color: var(--accent-light); line-height: 0; vertical-align: -0.2em; margin-right: 6px; }
+.testi__quote::after  { content: "”"; font-size: 1.4em; color: var(--accent-light); line-height: 0; vertical-align: -0.2em; margin-left: 6px; }
+.testi__author {
+  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.testi__author strong { color: var(--ink); font-weight: 500; margin-right: 12px; }
+.testi__nav {
+  display: flex; justify-content: center; align-items: center;
+  gap: 22px; margin-top: 50px;
+}
+.testi__btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-muted);
+  transition: var(--t);
+}
+.testi__btn:hover { background: var(--ink); color: var(--ink-light); border-color: var(--ink); }
+.testi__dots { display: flex; gap: 8px; }
+.testi__dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--line); transition: var(--t);
+}
+.testi__dot.is-active { background: var(--accent); transform: scale(1.3); }
+
+/* ============================================================
+   CONTACT
+============================================================ */
+.contact { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; }
+@media (max-width: 900px) { .contact { grid-template-columns: 1fr; } }
+.contact__map {
+  background: var(--bg-secondary);
+  min-height: 560px;
+  position: relative;
+  overflow: hidden;
+}
+.contact__map iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+  filter: grayscale(0.18) contrast(1.02);
+}
+.contact__map-overlay {
+  position: absolute; top: 22px; left: 22px;
+  background: var(--bg-primary);
+  padding: 10px 16px;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  font-weight: 500; color: var(--ink);
+  box-shadow: var(--shadow-soft);
+  z-index: 2;
+}
+
+.contact__info {
+  padding: clamp(40px, 6vw, 80px) clamp(28px, 5vw, 70px);
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 30px;
+}
+.contact__info .kicker { margin-bottom: 0; }
+.contact__row { display: flex; flex-direction: column; gap: 6px; }
+.contact__row b { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.1rem; }
+.contact__row a, .contact__row span { color: var(--ink-muted); font-size: 15px; }
+.contact__row a:hover { color: var(--accent); }
+.contact__row-mini { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+
+.hours { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.hours__row {
+  display: grid; grid-template-columns: 1fr auto;
+  padding: 12px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.hours__row:last-child { border-bottom: 0; }
+.hours__row.is-today { color: var(--accent); font-weight: 500; }
+.hours__row.is-today::before { content: "● "; }
+.hours__day { letter-spacing: 0.06em; }
+
+.social { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.social a:not(.btn) {
+  width: 40px; height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--t);
+}
+.social a:not(.btn):hover { background: var(--ink); color: var(--ink-light); border-color: var(--ink); transform: translateY(-2px); }
+
+/* ============================================================
+   FINAL CTA
+============================================================ */
+.cta-final {
+  position: relative;
+  min-height: 60vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  background: var(--bg-dark);
+  color: var(--ink-light);
+  overflow: hidden;
+  padding: 100px 20px;
+}
+.cta-final__bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1800&q=80') center/cover no-repeat;
+  opacity: 0.45;
+  filter: contrast(1.05) saturate(0.9);
+}
+.cta-final__veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(26,26,26,0.65), rgba(26,26,26,0.55));
+}
+.cta-final__inner { position: relative; max-width: 740px; }
+.cta-final .kicker { color: var(--accent-light); margin-bottom: 22px; }
+.cta-final h2 { margin-bottom: 22px; }
+.cta-final p { color: rgba(255,255,255,0.75); margin-bottom: 40px; }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer {
+  background: var(--bg-dark);
+  color: var(--ink-light);
+  padding: 90px 0 30px;
+  border-top: 1px solid var(--line-dark);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--line-dark);
+}
+@media (max-width: 800px) { .footer__grid { grid-template-columns: 1fr; gap: 40px; } }
+.footer h4 { font-family: 'Manrope', system-ui, sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 18px; font-weight: 500; }
+.footer__logo {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 18px;
+  color: var(--ink-light);
+}
+.footer__logo-mark {
+  width: 38px; height: 38px; flex: 0 0 38px;
+  color: var(--ink-light);
+  opacity: 0.95;
+}
+.footer__logo-text {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.footer__logo-top {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500; font-size: 22px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+}
+.footer__logo-top em {
+  font-style: italic; color: var(--accent-light); font-weight: 500;
+  margin-left: 4px;
+}
+.footer__logo-sub {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-weight: 500; font-size: 9px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+}
+.footer__tag { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 20px; max-width: 280px; }
+.footer__addr { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+.footer__nav { display: flex; flex-direction: column; gap: 10px; }
+.footer__nav a { color: rgba(255,255,255,0.7); font-size: 14px; transition: color var(--t); }
+.footer__nav a:hover { color: var(--accent-light); }
+.newsletter {
+  display: flex; align-items: stretch;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  margin-top: 10px;
+}
+.newsletter input {
+  flex: 1; background: transparent; border: 0; outline: none;
+  color: var(--ink-light); padding: 12px 0;
+  font-size: 14px;
+}
+.newsletter input::placeholder { color: rgba(255,255,255,0.4); }
+.newsletter button {
+  padding: 0 16px;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent-light);
+  transition: var(--t);
+}
+.newsletter button:hover { color: var(--ink-light); }
+.newsletter__success { font-size: 13px; color: var(--accent-light); margin-top: 12px; display: none; }
+.newsletter.is-success .newsletter__success { display: block; }
+.footer__social { display: flex; gap: 12px; margin-top: 24px; }
+.footer__social a {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.7);
+  transition: var(--t);
+}
+.footer__social a:hover { background: var(--accent); color: var(--ink-light); border-color: var(--accent); }
+.footer__bottom {
+  padding-top: 30px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  letter-spacing: 0.06em;
+  flex-wrap: wrap; gap: 14px;
+}
+.footer__bottom a:hover { color: var(--accent-light); }
+
+/* ============================================================
+   COOKIE BANNER
+============================================================ */
+.cookies {
+  position: fixed; bottom: 24px; left: 24px; right: 24px;
+  max-width: 480px;
+  background: var(--ink);
+  color: var(--ink-light);
+  padding: 24px 26px;
+  box-shadow: var(--shadow-strong);
+  z-index: 90;
+  transform: translateY(120%);
+  transition: transform 0.6s var(--ease);
+  border-radius: 4px;
+}
+.cookies.is-visible { transform: translateY(0); }
+.cookies h5 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 18px; margin-bottom: 8px; }
+.cookies p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 18px; line-height: 1.5; }
+.cookies__btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.cookies button {
+  padding: 10px 16px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 500;
+  transition: var(--t);
+  border-radius: 2px;
+}
+.cookies__accept { background: var(--accent-light); color: var(--ink); }
+.cookies__accept:hover { background: var(--bg-primary); }
+.cookies__refuse, .cookies__custom { border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
+.cookies__refuse:hover, .cookies__custom:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+/* ============================================================
+   ANIMATIONS (scroll reveal)
+============================================================ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.reveal.is-in { opacity: 1; transform: translateY(0); }
+.reveal[data-delay="1"] { transition-delay: 0.08s; }
+.reveal[data-delay="2"] { transition-delay: 0.16s; }
+.reveal[data-delay="3"] { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Aller au contenu</a>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="#" class="logo" aria-label="Maison Ondé, accueil">
+      <svg class="logo__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="20" ry="29" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M 14 32 Q 20 22 26 32 T 38 32 T 50 32" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="32" cy="5" r="1.4" fill="currentColor"/>
+        <circle cx="32" cy="59" r="1.4" fill="currentColor"/>
+      </svg>
+      <span class="logo__text">
+        <span class="logo__top">Maison<em>Ondé</em></span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#salon" class="nav__link" data-i18n="nav.salon">Le Salon</a>
+      <a href="#services" class="nav__link" data-i18n="nav.services">Services</a>
+      <a href="#team" class="nav__link" data-i18n="nav.team">Équipe</a>
+      <a href="#gallery" class="nav__link" data-i18n="nav.gallery">Réalisations</a>
+      <a href="#contact" class="nav__link" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="header__right">
+      <div class="lang" role="group" aria-label="Choix de langue">
+        <button type="button" data-lang="fr" class="is-active" aria-label="Français">FR</button>
+        <span class="lang__sep">/</span>
+        <button type="button" data-lang="en" aria-label="English">EN</button>
+      </div>
+      <a href="#cta-final" class="btn btn--primary header__cta" data-i18n="nav.book">Prendre RDV</a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile overlay -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu__nav" aria-label="Navigation mobile">
+    <a href="#salon" class="nav__link" data-i18n="nav.salon">Le Salon</a>
+    <a href="#services" class="nav__link" data-i18n="nav.services">Services</a>
+    <a href="#team" class="nav__link" data-i18n="nav.team">Équipe</a>
+    <a href="#gallery" class="nav__link" data-i18n="nav.gallery">Réalisations</a>
+    <a href="#contact" class="nav__link" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="mobile-menu__footer">
+    <div class="lang">
+      <button type="button" data-lang="fr" class="is-active">FR</button>
+      <span class="lang__sep">/</span>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+    <a href="#cta-final" class="btn btn--primary" data-i18n="nav.book">Prendre RDV</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO (full-bleed video)
+============================================================ -->
+<section class="hero" data-screen-label="01 Hero">
+  <video class="hero__video"
+    src="assets/video/hero.mp4"
+    poster="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1400&q=80&auto=format&fit=crop"
+    autoplay muted loop playsinline preload="metadata"
+    aria-hidden="true"></video>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <div class="hero__grain" aria-hidden="true"></div>
+
+  <div class="hero__badge" aria-label="Avis Google">
+    <span>★★★★★</span><strong>4.9</strong>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__text">
+      <div class="hero__mark">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <ellipse cx="32" cy="32" rx="20" ry="29" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M 14 32 Q 20 22 26 32 T 38 32 T 50 32" stroke="var(--accent-light)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="32" cy="5" r="1.4" fill="currentColor"/>
+          <circle cx="32" cy="59" r="1.4" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="kicker hero__kicker" data-i18n="hero.kicker">Lyon · Coiffure mixte depuis 2014</span>
+      <h1 class="h1 hero__title">
+        <span data-i18n="hero.title_part1">L'art capillaire,</span><br/>
+        <em data-i18n="hero.title_part2">pour elle et pour lui.</em>
+      </h1>
+      <p class="lead hero__sub" data-i18n="hero.subtitle">
+        Un salon, deux univers, une même exigence. Coupe, couleur, barbe, mariage — l'expertise Maison Ondé s'adresse à toute la famille.
+      </p>
+      <div class="hero__ctas">
+        <a href="#cta-final" class="btn btn--primary" data-i18n="hero.cta_primary">Prendre rendez-vous</a>
+        <a href="#salon" class="btn btn--ghost" data-i18n="hero.cta_secondary">Découvrir le salon</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true"><span data-i18n="hero.scroll">Découvrir</span></div>
+</section>
+
+<!-- ============================================================
+     MARQUEE
+============================================================ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item">Coupe Femme</span><span class="marquee__item">Coupe Homme</span><span class="marquee__item">Coloration</span><span class="marquee__item">Balayage</span><span class="marquee__item">Barbe</span><span class="marquee__item">Coiffure Mariage</span><span class="marquee__item">Coupe Enfant</span><span class="marquee__item">Lissage</span><span class="marquee__item">Soins</span>
+    <span class="marquee__item">Coupe Femme</span><span class="marquee__item">Coupe Homme</span><span class="marquee__item">Coloration</span><span class="marquee__item">Balayage</span><span class="marquee__item">Barbe</span><span class="marquee__item">Coiffure Mariage</span><span class="marquee__item">Coupe Enfant</span><span class="marquee__item">Lissage</span><span class="marquee__item">Soins</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     LE SALON
+============================================================ -->
+<section class="section" id="salon" data-screen-label="02 Le Salon">
+  <div class="container">
+    <div class="split">
+      <div class="salon__visual reveal">
+        <img src="assets/images/salon-interior.webp"
+             alt="Coiffeuse Maison Ondé en plein brushing — geste précis, ambiance lumineuse" loading="lazy" />
+        <span class="salon__visual-label">Le studio · Lyon 2<sup>e</sup></span>
+      </div>
+      <div class="salon__text reveal" data-delay="1">
+        <span class="kicker" data-i18n="salon.kicker">Le Salon</span>
+        <h2 class="h2" data-i18n="salon.title">Un lieu pensé pour <em>toutes et tous</em>.</h2>
+        <p class="lead" data-i18n="salon.p1">
+          Maison Ondé n'a ni rayon rose ni allée masculine. Un même atelier, où la précision d'une coupe homme côtoie la complexité d'un balayage, sans hiérarchie. Lumière douce, matériaux bruts, gestes appris en compétition.
+        </p>
+        <p class="lead" data-i18n="salon.p2">
+          Notre équipe se forme chaque saison auprès des grandes maisons — L'Oréal Professionnel, Kérastase, American Crew — pour vous garantir une lecture juste de votre cheveu, et un résultat qui dure.
+        </p>
+        <div class="salon__sig">
+          <!-- signature SVG -->
+          <svg width="120" height="48" viewBox="0 0 120 48" fill="none" aria-hidden="true">
+            <path d="M4 30 C 12 8, 20 8, 24 24 S 36 38, 44 22 C 50 12, 62 28, 70 18 C 78 8, 88 34, 100 22 C 108 14, 114 22, 118 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+          </svg>
+          <div class="salon__sig-info">
+            <b>Élise Marchand</b>
+            <span data-i18n="salon.founder">Fondatrice & coloriste</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="stat__num" data-from="1990">2014</div><div class="stat__label" data-i18n="stats.year">Année d'ouverture</div></div>
+      <div class="stat"><div class="stat__num">6</div><div class="stat__label" data-i18n="stats.team">Stylistes & barbiers</div></div>
+      <div class="stat"><div class="stat__num">+3000</div><div class="stat__label" data-i18n="stats.clients">Clients fidèles</div></div>
+      <div class="stat"><div class="stat__num">★ 4.9</div><div class="stat__label" data-i18n="stats.reviews">Avis Google</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+============================================================ -->
+<section class="section section--sand" id="services" data-screen-label="03 Services">
+  <div class="container">
+    <div class="services__head reveal">
+      <span class="kicker" data-i18n="services.kicker">Services & Tarifs</span>
+      <h2 class="h2" data-i18n="services.title">Pour elle, pour lui, <em>pour les enfants.</em></h2>
+      <p class="lead" data-i18n="services.lead">Tous les soins capillaires, sous un même toit. Tarifs indicatifs, ajustés selon longueur et épaisseur.</p>
+    </div>
+
+    <div class="tabs reveal" role="tablist" aria-label="Catégories de services">
+      <button class="tab is-active" data-tab="femme"  role="tab" aria-selected="true"  data-i18n="services.tab_f">Femme</button>
+      <button class="tab"            data-tab="homme"  role="tab" aria-selected="false" data-i18n="services.tab_h">Homme</button>
+      <button class="tab"            data-tab="enfant" role="tab" aria-selected="false" data-i18n="services.tab_e">Enfant</button>
+      <button class="tab"            data-tab="soins"  role="tab" aria-selected="false" data-i18n="services.tab_s">Soins & extras</button>
+    </div>
+
+    <!-- Femme -->
+    <div class="tab-panel is-active" id="tab-femme" role="tabpanel">
+      <div class="service-grid">
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f1">Coupe & Brushing</div><div class="service__meta" data-i18n="svc.f1m">45 min · Diagnostic offert</div></div><div class="service__price">dès 45€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f2">Couleur & Reflets</div><div class="service__meta" data-i18n="svc.f2m">1h30 · Coloration végétale possible</div></div><div class="service__price">dès 75€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f3">Balayage / Mèches</div><div class="service__meta" data-i18n="svc.f3m">2h · Technique main levée</div></div><div class="service__price">dès 110€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f4">Lissage & Soin profond</div><div class="service__meta" data-i18n="svc.f4m">1h · Kératine ou botox</div></div><div class="service__price">dès 65€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f5">Coiffure mariage / événement</div><div class="service__meta" data-i18n="svc.f5m">Essai inclus</div></div><div class="service__price" data-i18n="svc.devis">sur devis</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.f6">Chignon de soirée</div><div class="service__meta" data-i18n="svc.f6m">1h · Accessoires fournis</div></div><div class="service__price">dès 85€</div></article>
+      </div>
+      <p class="service__note" data-i18n="services.note">Tarifs indicatifs, susceptibles d'évoluer selon longueur et épaisseur de cheveu.</p>
+    </div>
+
+    <!-- Homme -->
+    <div class="tab-panel" id="tab-homme" role="tabpanel">
+      <div class="service-grid">
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h1">Coupe classique</div><div class="service__meta" data-i18n="svc.h1m">30 min · Shampoing inclus</div></div><div class="service__price">dès 28€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h2">Coupe + Barbe</div><div class="service__meta" data-i18n="svc.h2m">45 min · Serviette chaude</div></div><div class="service__price">dès 38€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h3">Taille de barbe au rasoir</div><div class="service__meta" data-i18n="svc.h3m">25 min · Coupe-chou traditionnel</div></div><div class="service__price">dès 22€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h4">Coloration grise</div><div class="service__meta" data-i18n="svc.h4m">45 min · Naturelle ou couvrante</div></div><div class="service__price">dès 35€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h5">Forfait Père & Fils</div><div class="service__meta" data-i18n="svc.h5m">Deux coupes simultanées</div></div><div class="service__price">dès 50€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.h6">Coupe & Soin cuir chevelu</div><div class="service__meta" data-i18n="svc.h6m">50 min · Massage tonique</div></div><div class="service__price">dès 42€</div></article>
+      </div>
+      <p class="service__note" data-i18n="services.note">Tarifs indicatifs, susceptibles d'évoluer selon longueur et épaisseur de cheveu.</p>
+    </div>
+
+    <!-- Enfant -->
+    <div class="tab-panel" id="tab-enfant" role="tabpanel">
+      <div class="service-grid">
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e1">Coupe enfant (-10 ans)</div><div class="service__meta" data-i18n="svc.e1m">20 min</div></div><div class="service__price">dès 18€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e2">Coupe ado (10-15 ans)</div><div class="service__meta" data-i18n="svc.e2m">30 min</div></div><div class="service__price">dès 25€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e3">Première coupe</div><div class="service__meta" data-i18n="svc.e3m">Photo souvenir offerte</div></div><div class="service__price">25€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.e4">Coupe & coiffage fillette</div><div class="service__meta" data-i18n="svc.e4m">30 min · Tresse incluse</div></div><div class="service__price">dès 28€</div></article>
+      </div>
+      <p class="service__note" data-i18n="services.note">Tarifs indicatifs, susceptibles d'évoluer selon longueur et épaisseur de cheveu.</p>
+    </div>
+
+    <!-- Soins -->
+    <div class="tab-panel" id="tab-soins" role="tabpanel">
+      <div class="service-grid">
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.s1">Diagnostic capillaire</div><div class="service__meta" data-i18n="svc.s1m">15 min · En cabine</div></div><div class="service__price" data-i18n="svc.free">Offert</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.s2">Soin botox / kératine</div><div class="service__meta" data-i18n="svc.s2m">1h · Sur cheveux abîmés</div></div><div class="service__price">dès 80€</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.s3">Pose d'extensions</div><div class="service__meta" data-i18n="svc.s3m">Tape-in ou keratine</div></div><div class="service__price" data-i18n="svc.devis">sur devis</div></article>
+        <article class="service"><div class="service__center"><div class="service__name" data-i18n="svc.s4">Forfait mariée</div><div class="service__meta" data-i18n="svc.s4m">Essai + jour J</div></div><div class="service__price">dès 250€</div></article>
+      </div>
+      <p class="service__note" data-i18n="services.note">Tarifs indicatifs, susceptibles d'évoluer selon longueur et épaisseur de cheveu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALLERY
+============================================================ -->
+<section class="section" id="gallery" data-screen-label="04 Réalisations">
+  <div class="container">
+    <div class="gallery__head reveal">
+      <span class="kicker" data-i18n="gallery.kicker">Réalisations</span>
+      <h2 class="h2" data-i18n="gallery.title">Nos coupes <em>signature</em>.</h2>
+      <p class="lead" data-i18n="gallery.lead" style="margin: 18px auto 0;">Neuf coupes phares — femme, homme, enfant. Survolez pour le rendu couleur, cliquez pour agrandir.</p>
+    </div>
+
+    <div class="gallery__filters reveal" role="group" aria-label="Filtres de la galerie">
+      <button class="filter is-active" data-filter="all"    data-i18n="gallery.f_all">Tout</button>
+      <button class="filter"            data-filter="femme"  data-i18n="gallery.f_f">Femme</button>
+      <button class="filter"            data-filter="homme"  data-i18n="gallery.f_h">Homme</button>
+      <button class="filter"            data-filter="enfant" data-i18n="gallery.f_e">Enfant</button>
+    </div>
+
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TEAM
+============================================================ -->
+<section class="section section--sand" id="team" data-screen-label="05 Équipe">
+  <div class="container">
+    <div class="team__head reveal">
+      <span class="kicker" data-i18n="team.kicker">L'équipe</span>
+      <h2 class="h2" data-i18n="team.title">Six mains. <em>Un même geste.</em></h2>
+    </div>
+
+    <div class="team-grid">
+      <article class="member reveal">
+        <div class="member__photo"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80" alt="Élise Marchand, fondatrice et coloriste" loading="lazy"/></div>
+        <div class="member__role">Fondatrice · Coloriste</div>
+        <div class="member__name">Élise Marchand</div>
+        <div class="member__info">12 ans d'expérience · Maître coloriste L'Oréal</div>
+        <a href="#" class="member__ig">→ Instagram</a>
+      </article>
+      <article class="member reveal" data-delay="1">
+        <div class="member__photo"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Romain Vasseur, barbier" loading="lazy"/></div>
+        <div class="member__role">Barbier</div>
+        <div class="member__name">Romain Vasseur</div>
+        <div class="member__info">8 ans · Compagnon du Devoir, rasage traditionnel</div>
+        <a href="#" class="member__ig">→ Instagram</a>
+      </article>
+      <article class="member reveal" data-delay="2">
+        <div class="member__photo"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Camille Roux, styliste senior" loading="lazy"/></div>
+        <div class="member__role">Styliste senior</div>
+        <div class="member__name">Camille Roux</div>
+        <div class="member__info">10 ans · Spécialiste coupes graphiques</div>
+        <a href="#" class="member__ig">→ Instagram</a>
+      </article>
+      <article class="member reveal">
+        <div class="member__photo"><img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=600&q=80" alt="Adam Khalil, coupe homme" loading="lazy"/></div>
+        <div class="member__role">Coupe homme · Dégradés</div>
+        <div class="member__name">Adam Khalil</div>
+        <div class="member__info">6 ans · Spécialiste dégradés américains</div>
+        <a href="#" class="member__ig">→ Instagram</a>
+      </article>
+      <article class="member reveal" data-delay="1">
+        <div class="member__photo"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80" alt="Sofia Berhane, coiffure mariage" loading="lazy"/></div>
+        <div class="member__role">Coiffeuse mariage</div>
+        <div class="member__name">Sofia Berhane</div>
+        <div class="member__info">9 ans · +400 mariées coiffées</div>
+        <a href="#" class="member__ig">→ Instagram</a>
+      </article>
+      <article class="member reveal" data-delay="2">
+        <div class="member__photo"><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=600&q=80" alt="Théo Lambert, junior" loading="lazy"/></div>
+        <div class="member__role">Junior styliste</div>
+        <div class="member__name">Théo Lambert</div>
+        <div class="member__info">3 ans · Formation continue Kérastase</div>
+        <a href="#" class="member__ig">→ Instagram</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section class="section" data-screen-label="06 Témoignages">
+  <div class="container">
+    <div class="testi">
+      <span class="kicker testi__kicker" data-i18n="testi.kicker">Ils en parlent</span>
+      <div class="testi__viewport">
+        <div class="testi__track" id="testiTrack">
+          <div class="testi__slide">
+            <div class="testi__stars">★★★★★</div>
+            <p class="testi__quote">Le seul salon où mon mari et moi prenons rendez-vous ensemble — et où nous repartons aussi contents l'un que l'autre. Du grand art, sans la moindre prétention.</p>
+            <div class="testi__author"><strong>Sophie M.</strong> Avis Google · Janvier 2026</div>
+          </div>
+          <div class="testi__slide">
+            <div class="testi__stars">★★★★★</div>
+            <p class="testi__quote">Romain a transformé ma barbe en quinze minutes. Précision chirurgicale, conseils sur mesure, ambiance soignée. Je n'irai plus ailleurs.</p>
+            <div class="testi__author"><strong>Karim B.</strong> Avis Google · Décembre 2025</div>
+          </div>
+          <div class="testi__slide">
+            <div class="testi__stars">★★★★★</div>
+            <p class="testi__quote">Un balayage parfaitement fondu, des conseils francs, et un accueil chaleureux. Maison Ondé a compris ce que veulent les femmes en 2026 : être entendues.</p>
+            <div class="testi__author"><strong>Léa T.</strong> Avis Google · Novembre 2025</div>
+          </div>
+          <div class="testi__slide">
+            <div class="testi__stars">★★★★★</div>
+            <p class="testi__quote">J'ai amené mon fils de 6 ans pour sa première vraie coupe. Patience, jeux, photo souvenir — il en redemande. Bravo à toute l'équipe.</p>
+            <div class="testi__author"><strong>Antoine R.</strong> Avis Google · Octobre 2025</div>
+          </div>
+          <div class="testi__slide">
+            <div class="testi__stars">★★★★★</div>
+            <p class="testi__quote">Mon chignon de mariée tenait encore le lendemain matin. Sofia est une magicienne, et elle a su me rassurer toute la journée. Mille mercis.</p>
+            <div class="testi__author"><strong>Inès D.</strong> Avis Google · Septembre 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi__nav">
+        <button class="testi__btn" id="testiPrev" aria-label="Témoignage précédent">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="testi__dots" id="testiDots" role="tablist"></div>
+        <button class="testi__btn" id="testiNext" aria-label="Témoignage suivant">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+============================================================ -->
+<section class="contact" id="contact" data-screen-label="07 Contact">
+  <div class="contact__map" aria-label="Carte de localisation">
+    <iframe
+      title="Carte Google Maps — Maison Ondé"
+      src="https://www.google.com/maps?q=12+rue+Auguste+Comte+69002+Lyon&z=16&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen></iframe>
+    <div class="contact__map-overlay">Maison Ondé · Lyon 2<sup>e</sup></div>
+  </div>
+
+  <div class="contact__info">
+    <span class="kicker" data-i18n="contact.kicker">Localisation & contact</span>
+    <h2 class="h2" data-i18n="contact.title">Au cœur de Lyon, <em>à deux pas de Bellecour.</em></h2>
+
+    <div class="contact__row">
+      <div class="contact__row-mini" data-i18n="contact.address_l">Adresse</div>
+      <span>12 rue Auguste Comte, 69002 Lyon</span>
+      <a href="https://maps.google.com/?q=12+rue+Auguste+Comte+Lyon" target="_blank" rel="noopener" data-i18n="contact.itin">→ Itinéraire</a>
+    </div>
+
+    <div class="contact__row">
+      <div class="contact__row-mini" data-i18n="contact.contact_l">Contact</div>
+      <a href="tel:+33478421653">+33 (0)4 78 42 16 53</a>
+      <a href="mailto:bonjour@maison-onde.fr">bonjour@maison-onde.fr</a>
+    </div>
+
+    <div>
+      <div class="contact__row-mini" style="margin-bottom:10px" data-i18n="contact.hours_l">Horaires</div>
+      <div class="hours" id="hours">
+        <div class="hours__row" data-day="1"><span class="hours__day" data-i18n="days.mon">Lundi</span><span data-i18n="contact.closed">Fermé</span></div>
+        <div class="hours__row" data-day="2"><span class="hours__day" data-i18n="days.tue">Mardi</span><span>9h30 — 19h30</span></div>
+        <div class="hours__row" data-day="3"><span class="hours__day" data-i18n="days.wed">Mercredi</span><span>9h30 — 19h30</span></div>
+        <div class="hours__row" data-day="4"><span class="hours__day" data-i18n="days.thu">Jeudi</span><span>9h30 — 19h30</span></div>
+        <div class="hours__row" data-day="5"><span class="hours__day" data-i18n="days.fri">Vendredi</span><span>9h30 — 20h00</span></div>
+        <div class="hours__row" data-day="6"><span class="hours__day" data-i18n="days.sat">Samedi</span><span>9h00 — 18h00</span></div>
+        <div class="hours__row" data-day="0"><span class="hours__day" data-i18n="days.sun">Dimanche</span><span data-i18n="contact.closed">Fermé</span></div>
+      </div>
+    </div>
+
+    <div class="social">
+      <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h3V6h-3a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9z"/></svg></a>
+      <a href="#" aria-label="Google"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></a>
+      <a href="#cta-final" class="btn btn--ghost" style="margin-left:8px" data-i18n="contact.book">Prendre RDV en ligne</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+============================================================ -->
+<section class="cta-final" id="cta-final" data-screen-label="08 CTA final">
+  <div class="cta-final__bg" aria-hidden="true"></div>
+  <div class="cta-final__veil" aria-hidden="true"></div>
+  <div class="cta-final__inner reveal">
+    <span class="kicker" data-i18n="cta.kicker">Réservez votre moment</span>
+    <h2 class="h2" data-i18n="cta.title">Prêt·e à transformer <em>votre style</em> ?</h2>
+    <p class="lead" data-i18n="cta.sub" style="color:rgba(255,255,255,0.75); margin-left:auto; margin-right:auto;">
+      Femmes, hommes, enfants — votre prochain rendez-vous est à un clic.
+    </p>
+    <a href="#" class="btn btn--invert" id="bookBtn" data-i18n="cta.btn">Prendre rendez-vous</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">
+          <svg class="footer__logo-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <ellipse cx="32" cy="32" rx="20" ry="29" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M 14 32 Q 20 22 26 32 T 38 32 T 50 32" stroke="var(--accent-light)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="32" cy="5" r="1.4" fill="currentColor"/>
+            <circle cx="32" cy="59" r="1.4" fill="currentColor"/>
+          </svg>
+          <span class="footer__logo-text">
+            <span class="footer__logo-top">Maison<em>Ondé</em></span>
+            <span class="footer__logo-sub">Atelier capillaire · Lyon</span>
+          </span>
+        </div>
+        <p class="footer__tag" data-i18n="footer.tag">Salon de coiffure mixte. Lyon, depuis 2014.</p>
+        <p class="footer__addr">12 rue Auguste Comte<br/>69002 Lyon · France<br/>+33 (0)4 78 42 16 53</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h3V6h-3a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9z"/></svg></a>
+          <a href="#" aria-label="Google"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 data-i18n="footer.explore">Explorer</h4>
+        <nav class="footer__nav">
+          <a href="#salon" data-i18n="nav.salon">Le Salon</a>
+          <a href="#services" data-i18n="nav.services">Services</a>
+          <a href="#team" data-i18n="nav.team">Équipe</a>
+          <a href="#gallery" data-i18n="nav.gallery">Réalisations</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+          <a href="#" data-i18n="footer.legal">Mentions légales</a>
+          <a href="#" data-i18n="footer.cgu">CGU</a>
+          <a href="#" data-i18n="footer.cookies">Politique cookies</a>
+        </nav>
+      </div>
+
+      <div>
+        <h4 data-i18n="footer.news">Lettre d'inspiration</h4>
+        <p class="footer__tag" data-i18n="footer.news_sub">Tendances, conseils saisonniers, offres réservées. Une fois par mois, jamais plus.</p>
+        <form class="newsletter" id="newsletter" novalidate>
+          <input type="email" required placeholder="votre@email.fr" aria-label="Votre adresse email" />
+          <button type="submit" data-i18n="footer.news_btn">S'inscrire</button>
+        </form>
+        <div class="newsletter__success" data-i18n="footer.news_ok">✓ Merci, à très vite dans votre boîte mail.</div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2026 Maison Ondé. Tous droits réservés.</span>
+      <span>Site conçu par <a href="#">LocalBoost Digital</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     LIGHTBOX
+============================================================ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Aperçu image">
+  <button class="lightbox__close" id="lbClose" aria-label="Fermer">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <button class="lightbox__prev" id="lbPrev" aria-label="Précédent">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="lightbox__next" id="lbNext" aria-label="Suivant">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+  <img class="lightbox__img" id="lbImg" alt="" />
+  <div class="lightbox__caption" id="lbCap"></div>
+</div>
+
+<!-- ============================================================
+     COOKIES
+============================================================ -->
+<aside class="cookies" id="cookies" role="dialog" aria-label="Préférences cookies">
+  <h5 data-i18n="cookies.title">Confort de navigation</h5>
+  <p data-i18n="cookies.body">Nous utilisons des cookies pour mesurer l'audience du site et améliorer votre expérience. Vous restez aux commandes.</p>
+  <div class="cookies__btns">
+    <button class="cookies__accept" id="ckAccept" data-i18n="cookies.accept">Tout accepter</button>
+    <button class="cookies__custom" id="ckCustom" data-i18n="cookies.custom">Personnaliser</button>
+    <button class="cookies__refuse" id="ckRefuse" data-i18n="cookies.refuse">Refuser</button>
+  </div>
+</aside>
+
+<!-- ============================================================
+     SCRIPTS
+============================================================ -->
+<script>
+/* ============================================================
+   i18n
+============================================================ */
+const I18N = {
+  fr: {
+    nav: { salon: "Le Salon", services: "Services", team: "Équipe", gallery: "Réalisations", contact: "Contact", book: "Prendre RDV" },
+    hero: {
+      kicker: "Lyon · Coiffure mixte depuis 2014",
+      title_part1: "L'art capillaire,",
+      title_part2: "pour elle et pour lui.",
+      subtitle: "Un salon, deux univers, une même exigence. Coupe, couleur, barbe, mariage — l'expertise Maison Ondé s'adresse à toute la famille.",
+      cta_primary: "Prendre rendez-vous",
+      cta_secondary: "Découvrir le salon",
+      scroll: "Découvrir"
+    },
+    salon: {
+      kicker: "Le Salon",
+      title: "Un lieu pensé pour <em>toutes et tous</em>.",
+      p1: "Maison Ondé n'a ni rayon rose ni allée masculine. Un même atelier, où la précision d'une coupe homme côtoie la complexité d'un balayage, sans hiérarchie. Lumière douce, matériaux bruts, gestes appris en compétition.",
+      p2: "Notre équipe se forme chaque saison auprès des grandes maisons — L'Oréal Professionnel, Kérastase, American Crew — pour vous garantir une lecture juste de votre cheveu, et un résultat qui dure.",
+      founder: "Fondatrice & coloriste"
+    },
+    stats: { year: "Année d'ouverture", team: "Stylistes & barbiers", clients: "Clients fidèles", reviews: "Avis Google" },
+    services: {
+      kicker: "Services & Tarifs",
+      title: "Pour elle, pour lui, <em>pour les enfants.</em>",
+      lead: "Tous les soins capillaires, sous un même toit. Tarifs indicatifs, ajustés selon longueur et épaisseur.",
+      tab_f: "Femme", tab_h: "Homme", tab_e: "Enfant", tab_s: "Soins & extras",
+      note: "Tarifs indicatifs, susceptibles d'évoluer selon longueur et épaisseur de cheveu."
+    },
+    svc: {
+      f1: "Coupe & Brushing", f1m: "45 min · Diagnostic offert",
+      f2: "Couleur & Reflets", f2m: "1h30 · Coloration végétale possible",
+      f3: "Balayage / Mèches", f3m: "2h · Technique main levée",
+      f4: "Lissage & Soin profond", f4m: "1h · Kératine ou botox",
+      f5: "Coiffure mariage / événement", f5m: "Essai inclus",
+      f6: "Chignon de soirée", f6m: "1h · Accessoires fournis",
+      h1: "Coupe classique", h1m: "30 min · Shampoing inclus",
+      h2: "Coupe + Barbe", h2m: "45 min · Serviette chaude",
+      h3: "Taille de barbe au rasoir", h3m: "25 min · Coupe-chou traditionnel",
+      h4: "Coloration grise", h4m: "45 min · Naturelle ou couvrante",
+      h5: "Forfait Père & Fils", h5m: "Deux coupes simultanées",
+      h6: "Coupe & Soin cuir chevelu", h6m: "50 min · Massage tonique",
+      e1: "Coupe enfant (-10 ans)", e1m: "20 min",
+      e2: "Coupe ado (10-15 ans)", e2m: "30 min",
+      e3: "Première coupe", e3m: "Photo souvenir offerte",
+      e4: "Coupe & coiffage fillette", e4m: "30 min · Tresse incluse",
+      s1: "Diagnostic capillaire", s1m: "15 min · En cabine",
+      s2: "Soin botox / kératine", s2m: "1h · Sur cheveux abîmés",
+      s3: "Pose d'extensions", s3m: "Tape-in ou keratine",
+      s4: "Forfait mariée", s4m: "Essai + jour J",
+      devis: "sur devis", free: "Offert"
+    },
+    gallery: {
+      kicker: "Réalisations", title: "Nos coupes <em>signature</em>.",
+      lead: "Neuf coupes phares — femme, homme, enfant. Survolez pour le rendu couleur, cliquez pour agrandir.",
+      f_all: "Tout", f_f: "Femme", f_h: "Homme", f_e: "Enfant"
+    },
+    team: { kicker: "L'équipe", title: "Six mains. <em>Un même geste.</em>" },
+    testi: { kicker: "Ils en parlent" },
+    contact: {
+      kicker: "Localisation & contact",
+      title: "Au cœur de Lyon, <em>à deux pas de Bellecour.</em>",
+      address_l: "Adresse", contact_l: "Contact", hours_l: "Horaires",
+      itin: "→ Itinéraire", closed: "Fermé", book: "Prendre RDV en ligne"
+    },
+    days: { mon: "Lundi", tue: "Mardi", wed: "Mercredi", thu: "Jeudi", fri: "Vendredi", sat: "Samedi", sun: "Dimanche" },
+    cta: {
+      kicker: "Réservez votre moment",
+      title: "Prêt·e à transformer <em>votre style</em> ?",
+      sub: "Femmes, hommes, enfants — votre prochain rendez-vous est à un clic.",
+      btn: "Prendre rendez-vous"
+    },
+    footer: {
+      tag: "Salon de coiffure mixte. Lyon, depuis 2014.",
+      explore: "Explorer",
+      news: "Lettre d'inspiration",
+      news_sub: "Tendances, conseils saisonniers, offres réservées. Une fois par mois, jamais plus.",
+      news_btn: "S'inscrire",
+      news_ok: "✓ Merci, à très vite dans votre boîte mail.",
+      legal: "Mentions légales", cgu: "CGU", cookies: "Politique cookies"
+    },
+    cookies: {
+      title: "Confort de navigation",
+      body: "Nous utilisons des cookies pour mesurer l'audience du site et améliorer votre expérience. Vous restez aux commandes.",
+      accept: "Tout accepter", custom: "Personnaliser", refuse: "Refuser"
+    }
+  },
+  en: {
+    nav: { salon: "The Salon", services: "Services", team: "Team", gallery: "Portfolio", contact: "Contact", book: "Book Now" },
+    hero: {
+      kicker: "Lyon · Unisex hair salon since 2014",
+      title_part1: "Hair artistry,",
+      title_part2: "for him and for her.",
+      subtitle: "One salon, two worlds, the same standard. Cuts, color, beard, bridal — Maison Ondé welcomes the whole family.",
+      cta_primary: "Book an appointment",
+      cta_secondary: "Discover the salon",
+      scroll: "Scroll"
+    },
+    salon: {
+      kicker: "The Salon",
+      title: "A space designed <em>for everyone</em>.",
+      p1: "No pink aisle, no men-only counter. A single atelier where the precision of a men's cut sits alongside the complexity of a balayage, without hierarchy. Soft light, raw materials, gestures honed in competition.",
+      p2: "Our team trains every season with the great houses — L'Oréal Professionnel, Kérastase, American Crew — to read your hair accurately and deliver results that last.",
+      founder: "Founder & colourist"
+    },
+    stats: { year: "Year opened", team: "Stylists & barbers", clients: "Loyal clients", reviews: "Google reviews" },
+    services: {
+      kicker: "Services & Pricing",
+      title: "For her, for him, <em>for the kids.</em>",
+      lead: "Every hair service under one roof. Prices are indicative and adjusted to length and density.",
+      tab_f: "Women", tab_h: "Men", tab_e: "Kids", tab_s: "Care & extras",
+      note: "Indicative pricing, may vary with length and density."
+    },
+    svc: {
+      f1: "Cut & Blow-dry", f1m: "45 min · Free diagnosis",
+      f2: "Colour & Highlights", f2m: "1h30 · Plant colour available",
+      f3: "Balayage / Highlights", f3m: "2h · Freehand technique",
+      f4: "Smoothing & Deep care", f4m: "1h · Keratin or botox",
+      f5: "Bridal / event styling", f5m: "Trial included",
+      f6: "Evening updo", f6m: "1h · Accessories included",
+      h1: "Classic cut", h1m: "30 min · Shampoo included",
+      h2: "Cut + Beard", h2m: "45 min · Hot towel",
+      h3: "Razor beard trim", h3m: "25 min · Traditional straight razor",
+      h4: "Grey blending", h4m: "45 min · Natural or full coverage",
+      h5: "Father & Son package", h5m: "Two simultaneous cuts",
+      h6: "Cut & Scalp care", h6m: "50 min · Tonic massage",
+      e1: "Children's cut (under 10)", e1m: "20 min",
+      e2: "Teen cut (10-15)", e2m: "30 min",
+      e3: "First haircut", e3m: "Souvenir photo included",
+      e4: "Girl's cut & styling", e4m: "30 min · Braid included",
+      s1: "Hair diagnosis", s1m: "15 min · In cabin",
+      s2: "Botox / Keratin care", s2m: "1h · For damaged hair",
+      s3: "Hair extensions", s3m: "Tape-in or keratin",
+      s4: "Bridal package", s4m: "Trial + wedding day",
+      devis: "on quote", free: "Free"
+    },
+    gallery: {
+      kicker: "Portfolio", title: "Our signature <em>cuts</em>.",
+      lead: "Nine signature cuts — women, men, children. Hover for colour, click to enlarge.",
+      f_all: "All", f_f: "Women", f_h: "Men", f_e: "Kids"
+    },
+    team: { kicker: "The team", title: "Six hands. <em>One craft.</em>" },
+    testi: { kicker: "Word of mouth" },
+    contact: {
+      kicker: "Visit & contact",
+      title: "Right in central Lyon, <em>steps from Bellecour.</em>",
+      address_l: "Address", contact_l: "Contact", hours_l: "Hours",
+      itin: "→ Directions", closed: "Closed", book: "Book online"
+    },
+    days: { mon: "Monday", tue: "Tuesday", wed: "Wednesday", thu: "Thursday", fri: "Friday", sat: "Saturday", sun: "Sunday" },
+    cta: {
+      kicker: "Book your moment",
+      title: "Ready to transform <em>your style</em>?",
+      sub: "Women, men, children — your next appointment is one click away.",
+      btn: "Book an appointment"
+    },
+    footer: {
+      tag: "Unisex hair salon. Lyon, since 2014.",
+      explore: "Explore",
+      news: "Inspiration letter",
+      news_sub: "Trends, seasonal advice, members-only offers. Once a month, never more.",
+      news_btn: "Subscribe",
+      news_ok: "✓ Thank you, see you in your inbox soon.",
+      legal: "Legal notice", cgu: "Terms", cookies: "Cookie policy"
+    },
+    cookies: {
+      title: "A smooth visit",
+      body: "We use cookies to measure our traffic and improve your experience. You stay in control.",
+      accept: "Accept all", custom: "Customise", refuse: "Decline"
+    }
+  }
+};
+
+const BOOKING_URL = "#"; // remplacer par l'URL Planity
+
+function getPath(obj, path) {
+  return path.split('.').reduce((o,k)=> (o && o[k] !== undefined) ? o[k] : null, obj);
+}
+function applyLang(lang) {
+  document.documentElement.lang = lang;
+  const dict = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const val = getPath(dict, el.getAttribute('data-i18n'));
+    if (val == null) return;
+    if (/<[a-z]/i.test(val)) el.innerHTML = val;
+    else el.textContent = val;
+  });
+  document.querySelectorAll('.lang button').forEach(b => {
+    b.classList.toggle('is-active', b.dataset.lang === lang);
+  });
+  try { localStorage.setItem('mo_lang', lang); } catch(e) {}
+}
+document.querySelectorAll('.lang button').forEach(b => {
+  b.addEventListener('click', () => applyLang(b.dataset.lang));
+});
+applyLang((function(){
+  try { return localStorage.getItem('mo_lang') || 'fr'; } catch(e) { return 'fr'; }
+})());
+
+/* ============================================================
+   Header scroll
+============================================================ */
+const header = document.getElementById('header');
+const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 50);
+onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+/* ============================================================
+   Burger menu
+============================================================ */
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const open = burger.classList.toggle('is-open');
+  mobileMenu.classList.toggle('is-open', open);
+  mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+  burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  burger.click();
+}));
+
+/* ============================================================
+   Scroll reveal
+============================================================ */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ============================================================
+   Services tabs
+============================================================ */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const id = tab.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => { t.classList.toggle('is-active', t === tab); t.setAttribute('aria-selected', t === tab ? 'true' : 'false'); });
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('is-active', p.id === 'tab-' + id));
+  });
+});
+
+/* ============================================================
+   Gallery + Lightbox
+============================================================ */
+function cardTilt(e) {
+  const card = e.currentTarget;
+  const r = card.getBoundingClientRect();
+  const px = (e.clientX - r.left) / r.width - 0.5;
+  const py = (e.clientY - r.top) / r.height - 0.5;
+  const frame = card.querySelector('.cut-card__frame');
+  const img = card.querySelector('.cut-card__photo img');
+  frame.style.transform = `rotateY(${px * 5}deg) rotateX(${-py * 5}deg)`;
+  if (img) img.style.translate = `${-px * 16}px ${-py * 16}px`;
+}
+function cardReset(e) {
+  const frame = e.currentTarget.querySelector('.cut-card__frame');
+  const img = e.currentTarget.querySelector('.cut-card__photo img');
+  frame.style.transform = '';
+  if (img) img.style.translate = '';
+}
+
+const GALLERY = [
+  { src: 'assets/images/cuts/cut-02.webp', num: '01', cat: 'femme',  l1: 'Coupe Femme',  l2: 'Longs',     cap: 'Coupe femme · longs ondulés' },
+  { src: 'assets/images/cuts/cut-03.webp', num: '02', cat: 'femme',  l1: 'Coupe Femme',  l2: 'Courts',    cap: 'Coupe femme · pixie' },
+  { src: 'assets/images/cuts/cut-04.webp', num: '03', cat: 'femme',  l1: 'Coupe Femme',  l2: 'Attachés',  cap: 'Coupe femme · chignon haut' },
+  { src: 'assets/images/cuts/cut-05.webp', num: '04', cat: 'femme',  l1: 'Coupe Femme',  l2: 'Rock',      cap: 'Coupe femme · shag blond' },
+  { src: 'assets/images/cuts/cut-06.webp', num: '05', cat: 'homme',  l1: 'Coupe Homme',  l2: 'Courts',    cap: 'Coupe homme · texturé court' },
+  { src: 'assets/images/cuts/cut-07.webp', num: '06', cat: 'homme',  l1: 'Coupe Homme',  l2: 'Mi-longs',  cap: 'Coupe homme · mid-shag bouclé' },
+  { src: 'assets/images/cuts/cut-08.webp', num: '07', cat: 'homme',  l1: 'Coupe Homme',  l2: 'Longs',     cap: 'Coupe homme · longs ondulés' },
+  { src: 'assets/images/cuts/cut-09.webp', num: '08', cat: 'enfant', l1: 'Coupe Enfant', l2: 'Garçon',    cap: 'Coupe enfant · garçon' },
+  { src: 'assets/images/cuts/cut-10.webp', num: '09', cat: 'enfant', l1: 'Coupe Enfant', l2: 'Fille',     cap: 'Coupe enfant · fille' }
+];
+const masonry = document.getElementById('masonry');
+const cardIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); cardIO.unobserve(e.target); } });
+}, { threshold: 0.12 });
+GALLERY.forEach((g, i) => {
+  const fig = document.createElement('figure');
+  fig.className = 'cut-card';
+  fig.dataset.cat = g.cat;
+  fig.dataset.index = i;
+  fig.style.transitionDelay = ((i % 3) * 0.08) + 's';
+  fig.innerHTML = `
+    <div class="cut-card__frame">
+      <div class="cut-card__photo"><img src="${g.src}" alt="${g.cap}" loading="lazy"/></div>
+      <span class="cut-card__view">Voir <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 5h12M8 1l4 4-4 4"/></svg></span>
+    </div>
+    <div class="cut-card__meta">
+      <span class="cut-card__num">${g.num}</span>
+      <div class="cut-card__label"><span>${g.l1}</span><span>${g.l2}</span></div>
+    </div>
+  `;
+  fig.addEventListener('click', () => openLightbox(i));
+  fig.addEventListener('mousemove', cardTilt);
+  fig.addEventListener('mouseleave', cardReset);
+  masonry.appendChild(fig);
+  cardIO.observe(fig);
+});
+
+// Filters
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.toggle('is-active', b === btn));
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.cut-card').forEach(t => {
+      t.classList.toggle('is-hidden', f !== 'all' && t.dataset.cat !== f);
+    });
+  });
+});
+
+// Lightbox
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCap = document.getElementById('lbCap');
+let lbIndex = 0;
+function openLightbox(i) {
+  lbIndex = i;
+  renderLightbox();
+  lb.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function renderLightbox() {
+  const g = GALLERY[lbIndex];
+  lbImg.src = g.src;
+  lbImg.alt = g.cap;
+  lbCap.textContent = g.cap;
+}
+function closeLightbox() {
+  lb.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lbPrev').addEventListener('click', () => { lbIndex = (lbIndex - 1 + GALLERY.length) % GALLERY.length; renderLightbox(); });
+document.getElementById('lbNext').addEventListener('click', () => { lbIndex = (lbIndex + 1) % GALLERY.length; renderLightbox(); });
+lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+document.addEventListener('keydown', (e) => {
+  if (!lb.classList.contains('is-open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+  if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+});
+
+/* ============================================================
+   Testimonials slider
+============================================================ */
+const tTrack = document.getElementById('testiTrack');
+const tDots = document.getElementById('testiDots');
+const tSlides = tTrack.children.length;
+let tIdx = 0, tAuto;
+for (let i = 0; i < tSlides; i++) {
+  const d = document.createElement('button');
+  d.className = 'testi__dot' + (i === 0 ? ' is-active' : '');
+  d.setAttribute('aria-label', 'Témoignage ' + (i+1));
+  d.addEventListener('click', () => setTesti(i, true));
+  tDots.appendChild(d);
+}
+function setTesti(i, user) {
+  tIdx = (i + tSlides) % tSlides;
+  tTrack.style.transform = `translateX(-${tIdx * 100}%)`;
+  tDots.querySelectorAll('.testi__dot').forEach((d, k) => d.classList.toggle('is-active', k === tIdx));
+  if (user) { clearInterval(tAuto); startTestiAuto(); }
+}
+document.getElementById('testiPrev').addEventListener('click', () => setTesti(tIdx - 1, true));
+document.getElementById('testiNext').addEventListener('click', () => setTesti(tIdx + 1, true));
+function startTestiAuto() { tAuto = setInterval(() => setTesti(tIdx + 1), 6000); }
+startTestiAuto();
+document.querySelector('.testi__viewport').addEventListener('mouseenter', () => clearInterval(tAuto));
+document.querySelector('.testi__viewport').addEventListener('mouseleave', startTestiAuto);
+
+// touch swipe
+let tx0 = null;
+tTrack.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; });
+tTrack.addEventListener('touchend', e => {
+  if (tx0 == null) return;
+  const dx = e.changedTouches[0].clientX - tx0;
+  if (Math.abs(dx) > 40) setTesti(tIdx + (dx < 0 ? 1 : -1), true);
+  tx0 = null;
+});
+
+/* ============================================================
+   Highlight today's hours
+============================================================ */
+(function highlightToday() {
+  const today = new Date().getDay(); // 0 = Sunday
+  document.querySelectorAll('.hours__row').forEach(r => {
+    if (parseInt(r.dataset.day, 10) === today) r.classList.add('is-today');
+  });
+})();
+
+/* ============================================================
+   Stat counters (count-up on scroll)
+============================================================ */
+const statIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    statIO.unobserve(e.target);
+    const el = e.target;
+    const text = el.textContent.trim();
+    const m = text.match(/[-+]?\d[\d.,]*/);
+    if (!m) return;
+    const target = parseFloat(m[0].replace(',', '.'));
+    const prefix = text.slice(0, m.index);
+    const suffix = text.slice(m.index + m[0].length);
+    const decimals = (m[0].split('.')[1] || '').length;
+    const from = parseFloat(el.dataset.from || 0);
+    const duration = 1800;
+    const start = performance.now();
+    function tick(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const v = from + (target - from) * eased;
+      el.textContent = prefix + (decimals ? v.toFixed(decimals) : Math.round(v)) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.stat__num').forEach(el => statIO.observe(el));
+
+/* ============================================================
+   Newsletter (simple validation)
+============================================================ */
+document.getElementById('newsletter').addEventListener('submit', e => {
+  e.preventDefault();
+  const input = e.target.querySelector('input');
+  if (input.value.includes('@') && input.value.includes('.')) {
+    e.target.classList.add('is-success');
+    input.value = '';
+  } else {
+    input.focus();
+  }
+});
+
+/* ============================================================
+   Booking button
+============================================================ */
+document.getElementById('bookBtn').addEventListener('click', e => {
+  if (BOOKING_URL && BOOKING_URL !== '#') {
+    e.preventDefault();
+    window.open(BOOKING_URL, '_blank', 'noopener');
+  }
+});
+
+/* ============================================================
+   Cookies
+============================================================ */
+(function cookies() {
+  const banner = document.getElementById('cookies');
+  let saved = null;
+  try { saved = localStorage.getItem('mo_cookies'); } catch(e) {}
+  if (!saved) {
+    setTimeout(() => banner.classList.add('is-visible'), 1200);
+  }
+  const dismiss = (choice) => {
+    try { localStorage.setItem('mo_cookies', choice); } catch(e) {}
+    banner.classList.remove('is-visible');
+  };
+  document.getElementById('ckAccept').addEventListener('click', () => dismiss('all'));
+  document.getElementById('ckRefuse').addEventListener('click', () => dismiss('none'));
+  document.getElementById('ckCustom').addEventListener('click', () => dismiss('essential'));
+})();
+</script>
+
+</body>
+</html>
