@@ -445,20 +445,61 @@ p { margin: 0; }
   box-shadow: 0 12px 32px -10px rgba(160,117,81,0.6);
 }
 .hero__ctas .btn--ghost { color: var(--ink-light); }
-.hero__badge {
-  position: absolute; top: 110px; right: 32px;
+
+/* ---- hero__status (live badge) ---- */
+.hero__status {
+  position: absolute; top: 100px; right: 32px;
   z-index: 4;
-  background: rgba(250, 248, 245, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 14px 18px;
-  border-radius: 2px;
-  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-  display: flex; align-items: center; gap: 10px;
-  box-shadow: var(--shadow-soft);
-  color: var(--ink);
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(15,12,10,0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.92);
 }
-.hero__badge strong { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 15px; letter-spacing: 0; text-transform: none; color: var(--accent); }
+.hero__status-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #3FBE99; flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(63,190,153,0.7);
+  animation: statusPulse 2s infinite;
+}
+@keyframes statusPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(63,190,153,0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(63,190,153,0); }
+  100% { box-shadow: 0 0 0 0 rgba(63,190,153,0); }
+}
+@media (max-width: 900px) {
+  .hero__status { top: 82px; right: 18px; padding: 7px 12px; font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__status-dot { animation: none; }
+}
+
+/* ---- hero__mark-vertical (Est. 2014 · Lyon) ---- */
+.hero__mark-vertical {
+  position: absolute; left: 24px; top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  writing-mode: vertical-rl; text-orientation: mixed;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.55);
+  user-select: none;
+  pointer-events: none;
+}
+.hero__mark-sep { opacity: 0.45; font-style: normal; }
+@media (max-width: 768px) {
+  .hero__mark-vertical { display: none; }
+}
+
 .hero__scroll {
   position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
   z-index: 4;
@@ -479,8 +520,6 @@ p { margin: 0; }
 }
 @media (max-width: 900px) {
   .hero__inner { padding: 110px 22px 80px; }
-  .hero__badge { top: 96px; right: 22px; padding: 10px 14px; }
-  .hero__badge strong { font-size: 14px; }
   .hero__mark { width: 52px; height: 52px; margin-bottom: 24px; }
   .hero__scroll { display: none; }
 }
@@ -924,9 +963,97 @@ p { margin: 0; }
 .testi__dot.is-active { background: var(--accent); transform: scale(1.3); }
 
 /* ============================================================
-   CONTACT
+   CONTACT — trust strip + alternatives + FAB
 ============================================================ */
-/* Layout principal : map à gauche, infos+form à droite */
+
+/* Strip de réassurance */
+.contact__trust {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  padding: clamp(20px, 3vw, 32px) clamp(20px, 4vw, 48px);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--line);
+}
+.contact__trust-item {
+  display: flex; align-items: center; gap: 10px;
+  flex: 1 1 180px;
+  background: var(--bg-primary);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 14px 18px;
+  font-size: 13px; font-weight: 500;
+  color: var(--ink);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.contact__trust-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft);
+}
+.contact__trust-item svg { color: var(--accent); flex-shrink: 0; }
+
+/* Alternatives de contact */
+.contact__alts {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin-top: 4px;
+}
+.contact__alt-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-muted);
+  background: var(--bg-primary);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease);
+  min-height: 44px;
+}
+.contact__alt-btn:hover {
+  transform: scale(1.02);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.contact__alt-btn svg { flex-shrink: 0; }
+
+/* Photo immersive mobile */
+.contact__mobile-photo {
+  display: none;
+}
+@media (max-width: 900px) {
+  .contact__mobile-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+  .contact__mobile-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    border-radius: 16px;
+  }
+}
+
+/* FAB Call — mobile uniquement */
+.mobile-call-fab {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 80;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 24px -6px rgba(139,100,66,0.6);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), opacity 0.4s var(--ease);
+  opacity: 1;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+}
+.mobile-call-fab:hover { transform: scale(1.06); box-shadow: 0 10px 32px -8px rgba(139,100,66,0.7); }
+.mobile-call-fab.is-hidden-fab { opacity: 0; pointer-events: none; }
+@media (min-width: 769px) { .mobile-call-fab { display: none; } }
+
+/* Contact layout */
 .contact { display: grid; grid-template-columns: 1fr 1.4fr; gap: 0; }
 @media (max-width: 900px) { .contact { grid-template-columns: 1fr; } }
 .contact__map {
@@ -1410,6 +1537,133 @@ h1, h2, h3, h4 {
 .lang button { padding: 12px 10px; min-width: 44px; min-height: 44px; }
 input, textarea, select, .newsletter input { font-size: max(16px, 1rem); }
 body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+
+/* ============================================================
+   V3 — MOBILE GLOBAL AUDIT
+============================================================ */
+
+/* --- Sections : padding vertical réduit mobile --- */
+@media (max-width: 480px) {
+  .section { padding: clamp(50px, 14vw, 80px) 0; }
+  :root { --gutter: 16px; }
+}
+
+/* --- Hero CTAs : stack vertical sur < 480px --- */
+@media (max-width: 480px) {
+  .hero__ctas { flex-direction: column; align-items: stretch; }
+  .hero__ctas .btn { width: 100%; justify-content: center; }
+  .hero__inner { padding: 100px 16px clamp(60px, 12vw, 100px); }
+}
+
+/* --- Services tabs : scroll horizontal sur mobile --- */
+@media (max-width: 640px) {
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    gap: 0;
+    scrollbar-width: none;
+    padding-bottom: 0;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { white-space: nowrap; flex-shrink: 0; padding: 14px 20px; }
+}
+
+/* --- Service lines : vertical sur < 480px --- */
+@media (max-width: 480px) {
+  .service {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+  }
+  .service__price {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: right;
+    font-size: 13px;
+    padding-top: 2px;
+  }
+}
+
+/* --- Gallery filters : scroll horizontal sans barre --- */
+@media (max-width: 640px) {
+  .gallery__filters {
+    display: flex; flex-wrap: nowrap;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    gap: 8px; scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .gallery__filters::-webkit-scrollbar { display: none; }
+  .filter { white-space: nowrap; flex-shrink: 0; }
+}
+
+/* --- Gallery grid mobile --- */
+@media (max-width: 600px) { .masonry { grid-template-columns: 1fr; } }
+@media (min-width: 601px) and (max-width: 900px) { .masonry { grid-template-columns: repeat(2,1fr); } }
+
+/* --- Team : 3 cols → 2 → 1 --- */
+@media (max-width: 900px) and (min-width: 641px) {
+  .team-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 640px) {
+  .team-grid { grid-template-columns: 1fr; }
+  .member__photo { width: 100%; aspect-ratio: 1; border-radius: 4px; overflow: hidden; }
+  .member__photo img { width: 100%; height: 100%; object-fit: cover; }
+}
+
+/* --- Testimonials : arrows touch-friendly --- */
+.testi__btn { min-width: 44px; min-height: 44px; }
+
+/* --- Contact : map height mobile + layout 1 col --- */
+@media (max-width: 900px) {
+  .contact { grid-template-columns: 1fr; }
+  .contact__map { min-height: 300px; }
+  .contact__map iframe { height: 300px; position: relative; }
+}
+@media (max-width: 480px) {
+  .contact__map { min-height: 240px; }
+  .contact__map iframe { height: 240px; }
+  .contact__info { padding: 28px 16px; }
+}
+
+/* --- Footer : 3 cols → 1 col mobile --- */
+@media (max-width: 600px) {
+  .footer { padding: 60px 0 calc(80px + env(safe-area-inset-bottom)) 0; }
+  .footer__social { justify-content: center; }
+  .footer__bottom { flex-direction: column; align-items: center; text-align: center; }
+  .newsletter { flex-direction: column; }
+  .newsletter input { padding: 14px 0; }
+  .newsletter button {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 12px 16px; border-radius: 2px;
+    align-self: flex-start;
+  }
+}
+
+/* --- Burger touch target --- */
+.burger { min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+@media (max-width: 960px) { .burger { display: flex; } }
+
+/* --- Cookie : bottom-sheet sur mobile --- */
+@media (max-width: 600px) {
+  .cookies {
+    left: 0; right: 0; bottom: 0;
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+    padding: 24px 20px calc(20px + env(safe-area-inset-bottom));
+  }
+  .cookies.is-visible { transform: translateY(0); }
+}
+
+/* --- prefers-reduced-motion : désactiver blobs + grain sur mobile réduit --- */
+@media (prefers-reduced-motion: reduce) {
+  .hero__grain, body::before { opacity: 0.01; }
+}
+
+/* --- Safe-area footer + FAB --- */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .footer__bottom { padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+}
 </style>
 </head>
 <body>
@@ -1489,8 +1743,15 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
   <div class="hero__grain" aria-hidden="true"></div>
   <button class="hero__video-toggle" id="heroVideoToggle" aria-label="Mettre la vidéo en pause">&#9646;&#9646;</button>
 
-  <div class="hero__badge" aria-label="Avis Google">
-    <span>★★★★★</span><strong>4.9</strong>
+  <div class="hero__status" aria-label="Statut du salon">
+    <span class="hero__status-dot" aria-hidden="true"></span>
+    <span data-i18n="hero.status">Ouvert · Mardi → Samedi</span>
+  </div>
+
+  <div class="hero__mark-vertical" aria-hidden="true">
+    <span>Est. 2014</span>
+    <span class="hero__mark-sep">·</span>
+    <span>Lyon 2<sup>e</sup></span>
   </div>
 
   <div class="hero__inner">
@@ -1776,7 +2037,24 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
 <!-- ============================================================
      CONTACT
 ============================================================ -->
-<section class="contact" id="contact" data-screen-label="07 Contact">
+
+<!-- Strip de réassurance -->
+<div class="contact__trust" id="contact" data-screen-label="07 Contact">
+  <div class="contact__trust-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <span data-i18n="trust.fast">Réponse sous 24h</span>
+  </div>
+  <div class="contact__trust-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.26h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span data-i18n="trust.tel">Confirmation par téléphone</span>
+  </div>
+  <div class="contact__trust-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+    <span data-i18n="trust.diag">Diagnostic capillaire offert</span>
+  </div>
+</div>
+
+<section class="contact" aria-labelledby="contact-heading">
   <div class="contact__map" aria-label="Carte de localisation">
     <iframe
       title="Carte Google Maps — Maison Ondé"
@@ -1788,7 +2066,14 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
   </div>
 
   <div class="contact__info">
-    <span class="kicker" data-i18n="contact.kicker">Localisation & contact</span>
+    <!-- Photo immersive — mobile uniquement -->
+    <div class="contact__mobile-photo" aria-hidden="true">
+      <img src="assets/images/salon-interior.webp"
+           alt="Intérieur du salon Maison Ondé — ambiance lumineuse et élégante"
+           loading="lazy" />
+    </div>
+
+    <span class="kicker" data-i18n="contact.kicker" id="contact-heading">Localisation & contact</span>
     <h2 class="h2" data-i18n="contact.title">Au cœur de Lyon, <em class="underlined">à deux pas de Bellecour.</em></h2>
 
     <!-- Infos compactes (adresse + tel + horaires) -->
@@ -1821,6 +2106,22 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
       <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a>
       <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h3V6h-3a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9z"/></svg></a>
       <a href="#" aria-label="Google"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></a>
+    </div>
+
+    <!-- Alternatives de contact rapides -->
+    <div class="contact__alts" role="group" aria-label="Alternatives de contact">
+      <a href="tel:+33478421653" class="contact__alt-btn" aria-label="Appeler Maison Ondé">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.26h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-i18n="contact.alt_call">Appeler</span>
+      </a>
+      <a href="mailto:bonjour@maison-onde.fr" class="contact__alt-btn" aria-label="Envoyer un email">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span data-i18n="contact.alt_email">Email direct</span>
+      </a>
+      <a href="https://maps.google.com/?q=12+rue+Auguste+Comte+69002+Lyon" target="_blank" rel="noopener noreferrer" class="contact__alt-btn" aria-label="Voir l'itinéraire sur Google Maps">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span data-i18n="contact.alt_map">Itinéraire</span>
+      </a>
     </div>
 
     <!-- ========================================================
@@ -2011,6 +2312,11 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
   </div>
 </aside>
 
+<!-- FAB Call — mobile uniquement -->
+<a href="tel:+33478421653" class="mobile-call-fab" id="mobileCallFab" aria-label="Appeler Maison Ondé">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.26h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+</a>
+
 <!-- ============================================================
      SCRIPTS
 ============================================================ -->
@@ -2028,7 +2334,13 @@ const I18N = {
       subtitle: "Salon de coiffure mixte au cœur de Lyon.",
       cta_primary: "Prendre rendez-vous",
       cta_secondary: "Découvrir le salon",
-      scroll: "Découvrir"
+      scroll: "Découvrir",
+      status: "Ouvert · Mardi → Samedi"
+    },
+    trust: {
+      fast: "Réponse sous 24h",
+      tel: "Confirmation par téléphone",
+      diag: "Diagnostic capillaire offert"
     },
     salon: {
       kicker: "Le Salon",
@@ -2101,7 +2413,10 @@ const I18N = {
       kicker: "Localisation & contact",
       title: "Au cœur de Lyon, <em>à deux pas de Bellecour.</em>",
       address_l: "Adresse", contact_l: "Contact", hours_l: "Horaires",
-      itin: "→ Itinéraire", closed: "Fermé", book: "Prendre RDV en ligne"
+      itin: "→ Itinéraire", closed: "Fermé", book: "Prendre RDV en ligne",
+      alt_call: "Appeler",
+      alt_email: "Email direct",
+      alt_map: "Itinéraire"
     },
     form: {
       title: "Envoyez-nous un message",
@@ -2148,7 +2463,13 @@ const I18N = {
       subtitle: "Unisex hair salon in the heart of Lyon.",
       cta_primary: "Book an appointment",
       cta_secondary: "Discover the salon",
-      scroll: "Scroll"
+      scroll: "Scroll",
+      status: "Open · Tuesday → Saturday"
+    },
+    trust: {
+      fast: "Reply within 24h",
+      tel: "Phone confirmation",
+      diag: "Free hair diagnostic"
     },
     salon: {
       kicker: "The Salon",
@@ -2221,7 +2542,10 @@ const I18N = {
       kicker: "Visit & contact",
       title: "Right in central Lyon, <em>steps from Bellecour.</em>",
       address_l: "Address", contact_l: "Contact", hours_l: "Hours",
-      itin: "→ Directions", closed: "Closed", book: "Book online"
+      itin: "→ Directions", closed: "Closed", book: "Book online",
+      alt_call: "Call us",
+      alt_email: "Direct email",
+      alt_map: "Directions"
     },
     form: {
       title: "Send us a message",
@@ -2677,6 +3001,22 @@ document.getElementById('bookBtn').addEventListener('click', e => {
     /* Affichage du message de succès */
     form.classList.add('is-sent');
   });
+})();
+
+/* ============================================================
+   V3 — FAB Call : fade-out quand section contact visible
+============================================================ */
+(function fabCallObserver() {
+  const fab = document.getElementById('mobileCallFab');
+  if (!fab) return;
+  const contactSection = document.querySelector('.contact');
+  if (!contactSection) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      fab.classList.toggle('is-hidden-fab', e.isIntersecting);
+    });
+  }, { threshold: 0.15 });
+  obs.observe(contactSection);
 })();
 
 /* ============================================================
